@@ -2,6 +2,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 import plistlib
 from pathlib import Path
 import stat
@@ -9,6 +10,7 @@ import subprocess
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 
@@ -223,6 +225,48 @@ class PublicationBehavior(unittest.TestCase):
         (resources / 'unexpected.srm').write_bytes(b'private save fixture')
         with self.assertRaisesRegex(publication.PublicationError, 'unreviewed outer app resource'):
             publication.check_app(app, self.root, self.manifest)
+
+    def test_app_accepts_a_verified_regular_notarization_ticket(self):
+        app, resources = self.app_fixture()
+        (app / 'Contents/CodeResources').write_bytes(b'authored ticket fixture')
+        with patch.object(publication.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0)) as verifier:
+            self.assertEqual(publication.check_app(app, self.root, self.manifest),
+                             {'core_files': 4, 'runtime_entries': 2})
+        verifier.assert_called_once_with(['/usr/bin/xcrun', 'stapler', 'validate', str(app)],
+                                         capture_output=True, timeout=30, check=False)
+
+    def test_app_rejects_an_invalid_notarization_ticket(self):
+        app, resources = self.app_fixture()
+        (app / 'Contents/CodeResources').write_bytes(b'altered ticket fixture')
+        with patch.object(publication.subprocess, 'run', return_value=subprocess.CompletedProcess([], 65)):
+            with self.assertRaisesRegex(publication.PublicationError, 'ticket did not validate'):
+                publication.check_app(app, self.root, self.manifest)
+
+    def test_ticket_verification_failure_or_timeout_is_closed(self):
+        app, resources = self.app_fixture()
+        (app / 'Contents/CodeResources').write_bytes(b'authored ticket fixture')
+        for error in [FileNotFoundError(), subprocess.TimeoutExpired('stapler', 30)]:
+            with self.subTest(error=type(error).__name__), patch.object(publication.subprocess, 'run', side_effect=error):
+                with self.assertRaisesRegex(publication.PublicationError, 'ticket could not be verified'):
+                    publication.check_app(app, self.root, self.manifest)
+
+    def test_ticket_links_special_files_and_size_bounds_fail_before_verification(self):
+        app, resources = self.app_fixture()
+        ticket = app / 'Contents/CodeResources'
+        makers = [lambda: ticket.symlink_to(self.root / 'README.md'), ticket.mkdir,
+                  lambda: os.mkfifo(ticket), lambda: ticket.write_bytes(b''),
+                  lambda: ticket.write_bytes(b'x' * (1024 * 1024 + 1))]
+        for make in makers:
+            with self.subTest(make=makers.index(make)):
+                make()
+                with patch.object(publication.subprocess, 'run') as verifier:
+                    with self.assertRaisesRegex(publication.PublicationError, 'ticket is linked, special, empty, or oversized'):
+                        publication.check_app(app, self.root, self.manifest)
+                    verifier.assert_not_called()
+                if ticket.is_dir() and not ticket.is_symlink():
+                    ticket.rmdir()
+                else:
+                    ticket.unlink()
 
     def test_app_accepts_builder_font_and_notice_source_locations(self):
         app, resources = self.app_fixture()

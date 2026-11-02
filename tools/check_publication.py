@@ -244,7 +244,18 @@ def check_app(app: Path, root: Path, manifest: dict) -> dict:
     resources = app / 'Contents/Resources'
     contents = app / 'Contents'
     for path in contents.iterdir():
-        if path.name not in {'MacOS', 'Resources', '_CodeSignature', 'Info.plist', 'PkgInfo'}:
+        if path.name == 'CodeResources':
+            ticket = path.lstat()
+            if not stat.S_ISREG(ticket.st_mode) or not 0 < ticket.st_size <= 1024 * 1024:
+                raise PublicationError('The app notarization ticket is linked, special, empty, or oversized.')
+            try:
+                result = subprocess.run(['/usr/bin/xcrun', 'stapler', 'validate', str(app)],
+                                        capture_output=True, timeout=30, check=False)
+            except (OSError, subprocess.TimeoutExpired) as error:
+                raise PublicationError('The app notarization ticket could not be verified.') from error
+            if result.returncode:
+                raise PublicationError('The app notarization ticket did not validate.')
+        elif path.name not in {'MacOS', 'Resources', '_CodeSignature', 'Info.plist', 'PkgInfo'}:
             raise PublicationError('An unreviewed app content entry is present: ' + path.name)
     macos = contents / 'MacOS'
     if macos.exists():
