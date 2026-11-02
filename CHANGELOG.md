@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.7.0-beta.2 - 2026-11-01
+
+Fixes from testing the public beta with an empty library.
+
+- Full-library checkboxes, **IN SET**, and pack counts use the same effective membership. Removing a build starts a custom set while retaining the other builds.
+- M64 metadata refresh downloads checksum-checked files for the games in your library without host Git or a full metadata checkout. Source labels reflect actual cached metadata; whole-library refresh retires files removed upstream.
+- System Files import errors appear inside the open sheet. Archive import errors name the original file, and failed batches leave the library unchanged.
+- Guides match the import, image-reuse, and card-review controls. Native imports support game files and ZIP archives; extract 7z archives separately.
+
+The download is Developer ID signed, notarized, and stapled. Clean external-Mac acceptance and physical-card tests remain open. The broad first-user walkthrough used `0.7.0-beta.1`; this release receives separate focused checks.
+
 ## 0.7.0-beta.1 - 2026-11-01
 
 First public Mac beta. Requires an Apple Silicon Mac with macOS 14 or later.

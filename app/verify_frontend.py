@@ -32,9 +32,42 @@ struct CatalogEnvelope: Decodable { let snapshot: LibrarySnapshot }
             packFormat: "image", tab: "LIBRARY", filter: "ALL", packScope: .selection)
         let model = AppModel(preferences: state)
         model.snapshot = snapshot
+        model.packScope = .fullLibrary; model.filter = .inSet
+        let chromatic = snapshot.releases.filter { $0.profile == "chromatic" }
+        let fullIds = Set(chromatic.map(\.id))
+        precondition(Set(model.groups.flatMap(\.releases).map(\.id)) == fullIds)
+        precondition(chromatic.allSatisfy { model.isInSet($0) } && model.canSaveCollection)
+        precondition(snapshot.releases.filter { $0.profile == "m64" }.allSatisfy { !model.isInSet($0) })
+        model.search = "Clockwork"
+        model.toggle(chromatic[0])
+        precondition(model.packScope == .selection && model.selected == fullIds.subtracting([chromatic[0].id]))
+        precondition(model.groups.isEmpty && model.packReleases.count == 2)
+        model.search = ""; model.chooseCollection(""); model.filter = .inSet
+        func withReleases(_ releases: [GameRelease]) -> LibrarySnapshot {
+            LibrarySnapshot(projectRoot: snapshot.projectRoot, profiles: snapshot.profiles, releases: releases,
+                collections: snapshot.collections, metadataVersion: snapshot.metadataVersion, message: snapshot.message,
+                management: snapshot.management, issues: snapshot.issues, verificationSummary: snapshot.verificationSummary,
+                preparedImages: snapshot.preparedImages)
+        }
+        model.snapshot = withReleases([chromatic[0]])
+        model.toggle(chromatic[0])
+        precondition(model.packScope == .selection && model.packReleases.isEmpty && model.groups.isEmpty && !model.canSaveCollection)
+        model.snapshot = snapshot
+        precondition(model.packReleases.isEmpty && model.groups.isEmpty && !model.canPrepare)
+        model.packScope = .fullLibrary
+        precondition(Set(model.groups.flatMap(\.releases).map(\.id)) == fullIds)
+        let receipt = PackReceipt(path: "fixture", folder: "fixture", zipPath: "", imagePath: "fixture.img",
+            gameCount: 3, fileCount: 3, totalBytes: 98304, manifestSha256: "fixture", message: nil)
+        model.receipt = receipt; model.snapshot = snapshot
+        precondition(model.receipt != nil)
+        model.snapshot = withReleases(Array(chromatic.dropFirst()))
+        precondition(model.receipt == nil)
+        model.receipt = receipt; model.snapshot = snapshot
+        precondition(model.receipt == nil && Set(model.groups.flatMap(\.releases).map(\.id)) == fullIds)
         var selections = 0
         for profile in ["chromatic", "m64"] {
             model.changeProfile(profile)
+            model.clearSelection()
             let initialBuilds = verificationIndexBuilds
             for group in model.groups {
                 model.focus(group)

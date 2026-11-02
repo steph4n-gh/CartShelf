@@ -1014,9 +1014,11 @@ private enum Backend {
     }
     @Published var snapshot: LibrarySnapshot? {
         didSet {
+            let previousBuilds = receipt == nil ? nil : Set(packReleases.map(\.id))
             artworkRevision += 1
             browserIndex = BrowserIndex(releases: snapshot?.releases ?? [])
             preparedImageInventory = snapshot?.preparedImages ?? []
+            if let previousBuilds, previousBuilds != Set(packReleases.map(\.id)) { invalidateReceipt() }
             refreshGroups()
             schedulePreferenceSave()
         }
@@ -1065,7 +1067,9 @@ private enum Backend {
             if packScope == .selection, packName == (profile == "m64" ? "M64 Full Library" : "Chromatic Full Library") {
                 packName = profile == "m64" ? "My M64 Collection" : "My Chromatic Collection"
             }
-            invalidateReceipt(); refreshPackPreview(); schedulePreferenceSave()
+            invalidateReceipt(); refreshPackPreview()
+            if filter == .inSet { refreshGroups() }
+            schedulePreferenceSave()
         }
     }
     @Published var collectionId = "" {
@@ -1136,6 +1140,9 @@ private enum Backend {
     }
     var currentProfile: LibraryProfile? { snapshot?.profiles.first { $0.id == profile } }
     var releases: [GameRelease] { browserIndex.shelves[profile]?.releases ?? [] }
+    func isInSet(_ release: GameRelease) -> Bool {
+        release.profile == profile && (packScope == .fullLibrary || selected.contains(release.id))
+    }
     var collections: [NamedCollection] { snapshot?.collections.filter { $0.profile == profile } ?? [] }
     var group: GameGroup? {
         if let id = focusedGroup, let result = visibleGroupsById[id] { return result }
@@ -1153,7 +1160,7 @@ private enum Backend {
         groups = candidates.filter { group in
             switch filter {
             case .all: return true
-            case .inSet: return group.releases.contains { selected.contains($0.id) }
+            case .inSet: return group.releases.contains { isInSet($0) }
             case .needsReview: return group.releases.contains { $0.needsReview }
             case .hasUpdate: return group.releases.contains { $0.update?.status == "update-listed" }
             case .missingArt: return group.releases.contains { $0.artworkPath.isEmpty }
@@ -1255,7 +1262,14 @@ private enum Backend {
     func toggle(_ release: GameRelease) {
         guard !draftLocked else { return }
         browserHint = nil
-        if selected.contains(release.id) { selected.remove(release.id) } else { selected.insert(release.id) }
+        if packScope == .fullLibrary {
+            selected = Set(packReleases.map(\.id)).subtracting([release.id])
+            packScope = .selection
+        } else if selected.contains(release.id) {
+            selected.remove(release.id)
+        } else {
+            selected.insert(release.id)
+        }
     }
     func clearSelection() {
         guard !draftLocked else { return }
@@ -1538,9 +1552,11 @@ private enum Backend {
         guard panel.runModal() == .OK else { return }
         load(["import"] + panel.urls.flatMap { ["--path", $0.path] }, label: "IMPORTING AND VERIFYING")
     }
+    var canSaveCollection: Bool { !busy && !packReleases.isEmpty }
     func saveCollection() {
         let name = collectionName.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !name.isEmpty, !selected.isEmpty else { return }
+        guard !name.isEmpty, canSaveCollection else { return }
+        let ids = Set(packReleases.map(\.id))
         showCollection = false
         let id: String
         if let collection = chosenCollection, collection.name.caseInsensitiveCompare(name) == .orderedSame {
@@ -1549,9 +1565,11 @@ private enum Backend {
             id = UUID().uuidString.replacingOccurrences(of: "-", with: "").lowercased()
         }
         var command = ["collection-save", "--name", name, "--profile", profile, "--id", id]
-        command += selected.sorted().flatMap { ["--release", $0] }
+        command += ids.sorted().flatMap { ["--release", $0] }
         action("SAVING COLLECTION") {
             self.snapshot = try Backend.decode(LibrarySnapshot.self, data: await self.run(command))
+            self.selected = ids
+            self.packScope = .selection
             self.collectionId = id
             self.packName = name
             self.operation = .idle("COLLECTION SAVED")
@@ -2014,7 +2032,7 @@ struct CartShelfView: View {
             }.frame(maxHeight: .infinity)
             HStack(spacing: 10) {
                 collectionPicker
-                PixelButton(title: "SAVE SET", disabled: model.busy || model.selected.isEmpty) {
+                PixelButton(title: "SAVE SET", disabled: !model.canSaveCollection) {
                     model.collectionName = model.collections.first(where: { $0.id == model.collectionId })?.name ?? ""
                     model.showCollection = true
                 }.frame(width: 120)
@@ -2030,7 +2048,7 @@ struct CartShelfView: View {
                     Text(group.title).font(pixel(12)).multilineTextAlignment(.leading).lineLimit(2).foregroundStyle(focused ? .white : Color(white: 0.72))
                     Spacer(minLength: 2)
                     if group.releases.count > 1 {
-                        let count = group.releases.filter { model.selected.contains($0.id) }.count
+                        let count = group.releases.filter { model.isInSet($0) }.count
                         Text(count > 0 ? "\(count)/\(group.releases.count) IN SET" : "\(group.releases.count) BUILDS")
                             .font(pixel(8)).foregroundStyle(count > 0 ? yellow : quiet).fixedSize().padding(.trailing, 8)
                     }
@@ -2038,10 +2056,10 @@ struct CartShelfView: View {
             }.buttonStyle(.plain).accessibilityLabel(group.title)
             if group.releases.count == 1, let release = group.releases.first {
                 Button { model.toggle(release) } label: {
-                    Text(model.selected.contains(release.id) ? "X" : " ").font(pixel(10, bold: true)).foregroundStyle(yellow)
+                    Text(model.isInSet(release) ? "X" : " ").font(pixel(10, bold: true)).foregroundStyle(yellow)
                         .frame(width: 19, height: 19).background(.black).overlay(Rectangle().stroke(quiet, lineWidth: 1))
                 }.buttonStyle(.plain).padding(.horizontal, 10)
-                    .accessibilityLabel((model.selected.contains(release.id) ? "Remove " : "Add ") + group.title + (model.selected.contains(release.id) ? " from set" : " to set"))
+                    .accessibilityLabel((model.isInSet(release) ? "Remove " : "Add ") + group.title + (model.isInSet(release) ? " from set" : " to set"))
             }
         }.background(focused ? Color(white: 0.16) : .clear)
     }
@@ -2090,9 +2108,9 @@ struct CartShelfView: View {
                     ForEach(group.releases) { build in
                         HStack(spacing: 10) {
                             Button { model.toggle(build) } label: {
-                                Text(model.selected.contains(build.id) ? "X" : " ").font(pixel(12, bold: true)).foregroundStyle(yellow)
+                                Text(model.isInSet(build) ? "X" : " ").font(pixel(12, bold: true)).foregroundStyle(yellow)
                                     .frame(width: 23, height: 23).background(.black).overlay(Rectangle().stroke(quiet, lineWidth: 2))
-                            }.buttonStyle(.plain).accessibilityLabel((model.selected.contains(build.id) ? "Remove " : "Add ") + (build.sources.first?.filename ?? build.title) + (model.selected.contains(build.id) ? " from set" : " to set"))
+                            }.buttonStyle(.plain).accessibilityLabel((model.isInSet(build) ? "Remove " : "Add ") + (build.sources.first?.filename ?? build.title) + (model.isInSet(build) ? " from set" : " to set"))
                             Button { model.focusBuild(build) } label: {
                                 VStack(alignment: .leading, spacing: 6) {
                                     HStack {
@@ -2692,12 +2710,12 @@ struct CartShelfView: View {
     private var collectionSheet: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("SAVE YOUR GAME SET").font(pixel(20, bold: true)).foregroundStyle(yellow)
-            Text("\(model.selected.count) exact \(model.selected.count == 1 ? "build" : "builds") for \(model.profile == "m64" ? "M64" : "Chromatic").").font(.system(size: 13, design: .monospaced)).foregroundStyle(quiet)
+            Text("\(model.packReleases.count) exact \(model.packReleases.count == 1 ? "build" : "builds") for \(model.profile == "m64" ? "M64" : "Chromatic").").font(.system(size: 13, design: .monospaced)).foregroundStyle(quiet)
             Text("A new name keeps the original set.").font(.system(size: 11, design: .monospaced)).foregroundStyle(quiet)
             TextField("Puzzle night", text: $model.collectionName).font(pixel(16)).textFieldStyle(.plain).padding(14).background(.black).modifier(Bevel()).accessibilityLabel("Collection name").onSubmit { model.saveCollection() }
             HStack(spacing: 12) {
                 PixelButton(title: "CANCEL") { model.showCollection = false }
-                PixelButton(title: "SAVE SET", primary: true, disabled: model.collectionName.trimmingCharacters(in: .whitespaces).isEmpty) { model.saveCollection() }
+                PixelButton(title: "SAVE SET", primary: true, disabled: !model.canSaveCollection || model.collectionName.trimmingCharacters(in: .whitespaces).isEmpty) { model.saveCollection() }
             }
         }.padding(28).frame(width: 520).background(.black).foregroundStyle(.white).modifier(Bevel(highlighted: true, accent: yellow))
     }
