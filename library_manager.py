@@ -679,7 +679,8 @@ class Library:
                         continue
                     if member.file_size > MAX_ROM_BYTES:
                         raise ValueError(f'Archive member exceeds the size limit: {member.filename}')
-                    target = stage / (uuid.uuid4().hex + member_path.suffix.lower())
+                    target = stage / uuid.uuid4().hex / member_path.name
+                    target.parent.mkdir()
                     with archive.open(member) as src, target.open('xb') as dst:
                         shutil.copyfileobj(src, dst)
                     if target.stat().st_size != member.file_size:
@@ -727,7 +728,8 @@ class Library:
             code = process.wait()
             if code or len(data) != size:
                 raise ValueError(f'Archive extraction failed for {name}: {error.decode(errors="replace").strip()}')
-            target = stage / (uuid.uuid4().hex + member_path.suffix.lower())
+            target = stage / uuid.uuid4().hex / member_path.name
+            target.parent.mkdir()
             target.write_bytes(data)
             yield member_path.name, target
 

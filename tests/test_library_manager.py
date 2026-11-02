@@ -283,6 +283,17 @@ class LibraryBehavior(unittest.TestCase):
         self.assertFalse((self.root / 'library/GB-GBC/Imports/New.gb').exists())
         self.assertEqual((self.root / 'library/GB-GBC/Imports/Puzzle (v1.1).gb').read_bytes(), gb_rom())
 
+    def test_invalid_archive_member_names_the_input_and_imports_nothing(self):
+        archive = self.root / 'mixed.zip'
+        with zipfile.ZipFile(archive, 'w') as output:
+            output.writestr('nested/Valid.gb', gb_rom())
+            output.writestr('nested/Broken Test.gbc', b'This is not a ROM.')
+        with self.assertRaisesRegex(ValueError, r'^Game Boy ROM header is incomplete: Broken Test\.gbc$'):
+            self.library.import_paths([archive])
+        self.assertFalse((self.root / 'library/GB-GBC/Imports/Valid.gb').exists())
+        self.assertFalse((self.root / 'library/GB-GBC/Imports/Broken Test.gbc').exists())
+        self.assertFalse(list((self.root / 'tmp').iterdir()))
+
     def test_import_detects_existing_source_aliases_and_source_filename_conflicts(self):
         original = self.write(self.gb / 'Puzzle.gb', gb_rom())
         result = self.library.import_paths([original])
