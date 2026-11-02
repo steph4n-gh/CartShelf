@@ -291,8 +291,13 @@ class Library:
             supported = re.fullmatch(r'[A-Za-z0-9]{4}', code) is not None
             result['ed64_metadata_supported'] = supported
             if supported:
-                for base in [self.root / 'cache/n64-flashcart-menu-metadata/metadata', self.root / 'custom-metadata']:
+                available_sources = []
+                for base, source_name in [(self.root / 'cache/n64-flashcart-menu-metadata/metadata', 'community'),
+                                          (self.root / 'custom-metadata', 'local custom')]:
                     directory = self._managed(base.joinpath(*code))
+                    if any(self._managed(directory / name).is_file() for name in
+                           ('metadata.ini', 'description.txt', 'boxart_front.png', 'boxart_back.png', 'gamepak_front.png')):
+                        available_sources.append(source_name)
                     ini = directory / 'metadata.ini'
                     if ini.is_file():
                         parser = configparser.ConfigParser(interpolation=None, strict=False)
@@ -312,8 +317,12 @@ class Library:
                     description = self._managed(directory / 'description.txt')
                     if description.is_file():
                         result['description'] = description.read_text(encoding='utf-8', errors='replace').strip()[:12000]
-                result['source_url'] = 'https://github.com/n64-tools/n64-flashcart-menu-metadata/tree/main/metadata/' + '/'.join(code)
-                result['confidence'] = 'Community metadata matched by cartridge game code; local revision identity is separate.'
+                if 'community' in available_sources:
+                    result['source_url'] = 'https://github.com/n64-tools/n64-flashcart-menu-metadata/tree/main/metadata/' + '/'.join(code)
+                if available_sources:
+                    result['confidence'] = ' and '.join(available_sources).capitalize() + ' metadata matched by cartridge game code; local revision identity is separate.'
+                else:
+                    result['confidence'] = 'Metadata unavailable for this cartridge game code.'
                 result['identity_verified'] = release['verified']
             else:
                 result['ed64_metadata_limit'] = 'This ROM header cannot select stock EverDrive menu metadata. CartShelf can still show its artwork and details.'

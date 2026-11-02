@@ -355,6 +355,42 @@ class LibraryBehavior(unittest.TestCase):
             import shutil
             shutil.rmtree(outside)
 
+    def test_n64_metadata_source_requires_supported_cached_files(self):
+        self.write(self.n64 / 'Junk Runner 64 (v3.2.1).z64', n64_rom(code='NEDE'))
+        directory = self.root / 'cache/n64-flashcart-menu-metadata/metadata/N/E/D/E'
+        self.write(directory / 'README.md', b'Not a supported metadata file.')
+        release = self.library.scan()['releases'][0]
+        self.assertEqual(release['title'], 'Junk Runner 64')
+        self.assertEqual(release['metadata']['source_url'], '')
+        self.assertEqual(release['metadata']['confidence'], 'Metadata unavailable for this cartridge game code.')
+        self.assertFalse(release['metadata']['identity_verified'])
+
+    def test_n64_metadata_source_names_present_community_files(self):
+        self.write(self.n64 / 'Alpha.z64', n64_rom(code='NAAE'))
+        directory = self.root / 'cache/n64-flashcart-menu-metadata/metadata/N/A/A/E'
+        self.write(directory / 'description.txt', b'A sourced description.')
+        metadata = self.library.scan()['releases'][0]['metadata']
+        self.assertEqual(metadata['description'], 'A sourced description.')
+        self.assertEqual(metadata['source_url'], 'https://github.com/n64-tools/n64-flashcart-menu-metadata/tree/main/metadata/N/A/A/E')
+        self.assertEqual(metadata['confidence'], 'Community metadata matched by cartridge game code; local revision identity is separate.')
+
+    def test_n64_custom_only_and_exact_metadata_keep_their_own_provenance(self):
+        self.write(self.n64 / 'Alpha.z64', n64_rom(code='NAAE'))
+        self.write(self.root / 'custom-metadata/N/A/A/E/metadata.ini', b'[meta]\nname = Custom Alpha\nshort-desc = Local description.\n')
+        release = self.library.scan()['releases'][0]
+        metadata = release['metadata']
+        self.assertEqual(metadata['canonical_title'], 'Custom Alpha')
+        self.assertEqual(metadata['description'], 'Local description.')
+        self.assertEqual(metadata['source_url'], '')
+        self.assertEqual(metadata['confidence'], 'Local custom metadata matched by cartridge game code; local revision identity is separate.')
+        override = {'id': release['id'], 'identity_sha256': release['identity_sha256'],
+                    'description': 'Exact local note.', 'source_url': 'https://example.com/exact-build',
+                    'confidence': 'User supplied exact-build note.'}
+        self.write(self.root / 'library/metadata-overrides' / (release['id'].replace(':', '-') + '.json'), json.dumps(override).encode())
+        metadata = self.library.scan()['releases'][0]['metadata']
+        for field in ('description', 'source_url', 'confidence'):
+            self.assertEqual(metadata[field], override[field])
+
     def test_n64_export_converts_metadata_only_for_selected_codes(self):
         self.write(self.n64 / 'Alpha.z64', n64_rom(code='NAAE'))
         self.write(self.n64 / 'Beta.z64', n64_rom(code='NBBE', fill=1))
