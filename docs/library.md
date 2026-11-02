@@ -7,18 +7,22 @@ Connect a writable library folder before importing games. One library can hold b
 1. Open **LIBRARY** and select **M64** or **CHROMATIC**.
 2. Search for a title or version. Use **ALL**, **IN SET**, **NEEDS REVIEW**, **HAS UPDATE**, or **MISSING ART** to narrow the shelf.
 3. Select a title to see its available builds.
-4. Inspect the version, filename, file size, and hash in the detail panel.
+4. Inspect the version, filename, file size, and hash in the detail panel. In a smaller window, scroll the panel to see all build rows and the hash.
 5. Check the builds you want, then choose **SAVE SET** to keep that selection.
 
-![Library browser showing title search, maintenance controls, save history, and a custom two-build set](images/library-browser.jpg)
+![Library browser showing title search, maintenance controls, save history, and a custom two-build set](images/library-revisions.jpg)
 
-This actual app capture uses fictional games. The selected title has no sourced description, so CartShelf shows that gap rather than inventing metadata. A title can have several revisions. Each checkbox selects one exact build.
+This actual app capture uses fictional games. Clock Garden has two generated revisions, each with its own checkbox and content identity. The title has no sourced description, so CartShelf shows that gap rather than inventing metadata.
+
+**CHOOSE A THEME** selects a saved game set. Use **ARCHIVE SET** to retire a saved set without removing its ROMs. Cartridge menu appearance is covered in [the themes guide](themes.md).
 
 Use **IMPORT** to add files or folders. Use **RESCAN** after changing files outside CartShelf. If the library drive disconnects, reconnect that folder when prompted.
 
 ## Refresh details and artwork
 
 Choose **REFRESH METADATA** for the selected device. Open **GAME DETAILS & SOURCES** to inspect available descriptions, credits, genre, year, and source links.
+
+Refresh uses the network. The first M64 refresh also downloads the community metadata checkout and reference data. Allow that operation to finish before building a pack.
 
 Artwork can identify a title without proving which ROM revision you own. Some homebrew and modified games have no reference match or sourced artwork. Use **MISSING ART** to find those entries. Metadata and downloaded images stay in your library cache.
 

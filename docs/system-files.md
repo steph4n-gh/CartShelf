@@ -14,7 +14,7 @@ Actual app capture from an isolated documentation library. The checksum identifi
 4. Choose **IMPORT OFFICIAL FILE** and select that file or a supported official ZIP.
 5. Wait for **VERIFIED FILES READY** before preparing the pack.
 
-The importer checks the exact stock size and SHA-256 before caching the file and its source receipt in your library. Unknown or changed bytes need review.
+The importer checks the exact stock size and SHA-256 before caching the file and its source receipt in your library. It rejects unknown or altered bytes and leaves any existing verified cache file intact.
 
 | Device pair | Supported importer in 0.7.0-beta.1 | Use in the pack |
 | --- | --- | --- |
@@ -27,9 +27,9 @@ These are the beta's pinned import identities. They are not a promise that no ne
 
 | Place in CartShelf | What it tells you |
 | --- | --- |
-| **SYSTEM FILES** | The supported offline import, required checksum, and readiness of that library cache. |
+| **SYSTEM FILES** | The pinned offline import, required checksum, and readiness of that library cache. The M64 sheet stays pinned to 26.1014 even if metadata refresh caches a newer EFU. |
 | M64 **REFRESH METADATA** | Also checks the official PRO firmware directory and caches its newest listed EFU. M64 packs select the highest cached matching EFU version. |
-| Card replacement review | The system files actually included in that prepared pack. Check this when an EFU newer than the pinned import is cached. |
+| **SYSTEM FILES INCLUDED** in card review | The system files actually included in that prepared pack. Check this when an EFU newer than the pinned import is cached. |
 | Installed cartridge firmware | Unknown. CartShelf does not query the installed version or flash the cartridge. |
 
 An existing exported pack keeps the files it was built with. Refresh the library and build a new pack to include changed cached inputs.

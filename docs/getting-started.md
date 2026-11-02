@@ -20,7 +20,7 @@ The release app is Developer ID signed and notarized. The app includes its Pytho
 
 You should see titles and exact builds in the library browser.
 
-![CartShelf library browser with fictional titles and selected builds](images/library-browser.jpg)
+![CartShelf library browser with fictional titles and selected builds](images/library-revisions.jpg)
 
 Generated-data example. Checkboxes select exact builds. Selecting a title opens its details without adding it to the set. [The library guide](library.md) covers metadata refresh, ROM checks, and recoverable duplicate cleanup.
 

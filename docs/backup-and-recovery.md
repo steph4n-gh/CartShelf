@@ -13,6 +13,15 @@ Finish saving in your game, allow card activity to complete, and power off befor
 
 Keep verified backups on a separate volume from the SD card. CartShelf protects the physical disks holding the selected library, running application, and startup system.
 
+## Back up without replacing a pack
+
+1. Open **CARD**, select the intended removable card, and check its live device ID and capacity. You do not need to select a pack image.
+2. Choose **CARD FILES** or **WHOLE CARD IMAGE**. The backup goes into your selected library on another drive.
+3. Choose **BACK UP ONLY** and complete any macOS access or authorization prompt.
+4. Wait for the verified backup result and safe-ejection report. Use **SHOW BACKUP** to inspect the saved backup.
+
+For a card with a recognized volume, use **NAME CARD** to give it a friendly label. Saved names, last-pack summaries, and last-backup details are advisory. Always check the live device ID and capacity before a card operation.
+
 ## Replace a pack
 
 ![Card replacement review grouping game changes, save sources, included system files, and backup details](images/review-card.jpg)
@@ -22,9 +31,10 @@ Disabled display-only fixture using the production review view. It illustrates t
 1. Select a prepared image and an eligible removable card.
 2. Review games added, retained, and removed.
 3. Review saves from the current card, history, or an explicit earlier-save choice. Check the reasons for saves retained only in backup.
-4. Check the live device ID, capacity, backup method, and destination.
-5. Start the replacement and keep the card connected.
-6. Remove the card only after safe ejection is reported.
+4. Check **SYSTEM FILES INCLUDED** for the prepared pack.
+5. Check the live device ID, capacity, backup method, and destination.
+6. Start the replacement and keep the card connected.
+7. Remove the card only after safe ejection is reported.
 
 The image stays compact when exported. A direct pack installation creates a full-capacity FAT32 filesystem. A reused filename does not make two ROM revisions interchangeable. Save matching uses exact content identity, with N64 byte-order normalization.
 

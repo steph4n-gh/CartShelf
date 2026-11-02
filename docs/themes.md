@@ -22,6 +22,8 @@ The popup is also an authored simulation with fictional entries. Preview colors 
 
 Source palette reference, not a console capture. Handheld display colors can differ from these browser swatches.
 
+The source colors are charcoal `#080808`, white `#FFFFFF`, scarlet `#A51018`, and yellow `#FFDE08`.
+
 CartShelf-GB changes four menu palette entries in an exact verified OS 1.06 copy. The library keeps its stock `GBCOS.BIN` unchanged. Pack preparation themes a separate copy for `GBCSYS/GBCOS.BIN` and verifies the output.
 
 This palette change keeps the X7's existing menu layout and font. It does not add M64-style wallpaper or box-art browsing. Import the supported official OS through [SYSTEM FILES](system-files.md) before building a complete Chromatic card.

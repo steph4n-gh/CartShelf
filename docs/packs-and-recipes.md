@@ -45,7 +45,7 @@ A recipe carries the set's name, notes, titles, version labels, and exact conten
 1. Choose **OPEN RECIPE** in **PACKS**.
 2. Select the recipe file.
 3. Review the exact matches and missing builds.
-4. Choose **IMPORT N MATCHED BUILDS** to create a set from the matches.
+4. Choose **IMPORT 1 MATCHED BUILD**, or the matched count shown, to create a set from the matches.
 
 ![Recipe review with one exact match and one explicitly missing revision](images/recipe-review.jpg)
 

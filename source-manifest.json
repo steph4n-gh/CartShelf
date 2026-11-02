@@ -193,6 +193,11 @@
       "sha256": "945b9fc2395579fff401285bd418ef49829c4eb9361e2aa62be2bc1c1710515e",
       "notice": "docs/images/README.md"
     },
+    "docs/images/library-revisions.jpg": {
+      "kind": "asset",
+      "sha256": "f52ff7db6061f50468a1d04a5bb3baab561d48447806247f32bea48f9e14c783",
+      "notice": "docs/images/README.md"
+    },
     "docs/images/pack-builder.jpg": {
       "kind": "asset",
       "sha256": "d20b143cdd1a793cd623db9783b913581aa16d3afc49339d3847e69a115683c4",

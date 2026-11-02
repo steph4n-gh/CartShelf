@@ -10,7 +10,7 @@ A native Mac app for your ModRetro game collection. Browse exact ROM builds, mak
 
 **macOS 14 or later. Apple Silicon.** The packaged beta includes its Python runtime. You do not need Homebrew or a separate Python installation.
 
-![CartShelf library browser with fictional Chromatic games and two selected exact builds](docs/images/library-browser.jpg)
+![CartShelf library browser with fictional Chromatic games and two selected exact builds](docs/images/library-revisions.jpg)
 
 The app screenshots use fictional titles and generated, nonplayable game and save fixtures. They contain no personal collection or save data. Theme previews are labelled simulations.
 
@@ -32,6 +32,8 @@ On the Chromatic shelf, check public ModRetro game release notes for newer liste
 ## Make a pack for tonight
 
 Save a puzzle afternoon, a racing night, or your own discovery set. Preview the exact games, then build a folder, ZIP, or compact FAT32 image. Direct installation through CartShelf uses the card's full capacity.
+
+**CHOOSE A THEME** and **CHANGE THEME** select a saved game set. **ARCHIVE SET** retires a saved set without deleting its ROMs.
 
 ![CartShelf pack builder with two fictional M64 builds and a verified image ready for Card](docs/images/pack-builder.jpg)
 
@@ -59,7 +61,7 @@ Installed cartridge firmware remains unknown. An EFU is an updater you run on th
 
 1. Download the beta ZIP and move `CartShelf.app` to Applications or another normal mounted drive.
 2. Open CartShelf and create or connect a writable library folder outside the app and source checkout.
-3. Import your games, then open **PACKS > SYSTEM FILES** to verify the manufacturer's supported files.
+3. Import your games, then open **PACKS > SYSTEM FILES** to import and verify the manufacturer's supported files.
 4. Select exact builds in **LIBRARY**, then open **PACKS** to build an image.
 5. Follow [the first card-write guide](docs/getting-started.md#write-a-spare-card) with a spare card and a verified backup.
 

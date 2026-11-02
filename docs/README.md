@@ -2,7 +2,7 @@
 
 Start with [your first pack](getting-started.md). You will connect a library, import games, prepare system files, and review a spare-card write.
 
-![CartShelf library browser with fictional games and two selected exact builds](images/library-browser.jpg)
+![CartShelf library browser with fictional games and two selected exact builds](images/library-revisions.jpg)
 
 The screenshots use fictional titles and generated, nonplayable game and save data. Theme previews are labelled simulations or palette references. See [image provenance](images/README.md).
 
