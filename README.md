@@ -69,7 +69,7 @@ Your library folder holds games, downloaded metadata, system files, packs, backu
 
 ## Beta status
 
-Version `0.7.0-beta.2` is Developer ID signed and notarized. The app-only fresh-library walkthrough covered both device profiles, imports, system files, recipes, duplicate recovery, and all three pack outputs. Independent checks mounted both exported images read-only and matched their files to the prepared manifests. See the [release notes](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.2) for qualification details.
+Version `0.7.0-beta.2` is Developer ID signed and notarized. This release fixes issues found while testing `0.7.0-beta.1` from an empty library. That app-only walkthrough covered both device profiles, imports, system files, recipes, duplicate recovery, and all three pack outputs. Independent checks mounted both beta1 exported images read-only and matched their files to the prepared manifests. See the [release notes](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.2) for qualification details.
 
 Clean external-Mac testing and physical SD-card tests of this rebuilt beta remain open. Those checks include card recovery, clock and save persistence, native card-operation contention, and the public N64 font atlas. Earlier private-build hardware results do not qualify this beta. Use [the beta checklist](docs/beta-testing.md) to record a result.
 
