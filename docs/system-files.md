@@ -16,7 +16,7 @@ Actual app capture from an isolated documentation library. The checksum identifi
 
 The importer checks the exact stock size and SHA-256 before caching the file and its source receipt in your library. It rejects unknown or altered bytes and leaves any existing verified cache file intact.
 
-| Device pair | Supported importer in 0.7.0-beta.1 | Use in the pack |
+| Device pair | Supported importer in 0.7.0-beta.2 | Use in the pack |
 | --- | --- | --- |
 | M64 and EverDrive-64 PRO | EFU 26.1014 | An updater under `Firmware`. You run the update on the cartridge when needed. |
 | Chromatic and EverDrive-GB X7 | Menu OS 1.06 | A separately themed `GBCSYS/GBCOS.BIN` that the cartridge loads from SD. |

@@ -4,7 +4,7 @@
 
 A native Mac app for your ModRetro game collection. Browse exact ROM builds, make themed packs, and prepare EverDrive SD cards with verified backups and save history.
 
-**[Download the Mac beta](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.1)** · [Get started](docs/getting-started.md) · [Browse the guides](docs/README.md) · [Report a bug](https://github.com/steph4n-gh/CartShelf/issues/new/choose)
+**[Download the Mac beta](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.2)** · [Get started](docs/getting-started.md) · [Browse the guides](docs/README.md) · [Report a bug](https://github.com/steph4n-gh/CartShelf/issues/new/choose)
 
 [![Source and Mac candidate checks](https://github.com/steph4n-gh/CartShelf/actions/workflows/checks.yml/badge.svg)](https://github.com/steph4n-gh/CartShelf/actions/workflows/checks.yml)
 
@@ -69,7 +69,7 @@ Your library folder holds games, downloaded metadata, system files, packs, backu
 
 ## Beta status
 
-Version `0.7.0-beta.1` is Developer ID signed and notarized. The candidate passed 389 automated tests and ten virtual card operations. See the [release notes](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.1) for qualification details.
+Version `0.7.0-beta.2` is Developer ID signed and notarized. The app-only fresh-library walkthrough covered both device profiles, imports, system files, recipes, duplicate recovery, and all three pack outputs. Independent checks mounted both exported images read-only and matched their files to the prepared manifests. See the [release notes](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.2) for qualification details.
 
 Clean external-Mac testing and physical SD-card tests of this rebuilt beta remain open. Those checks include card recovery, clock and save persistence, native card-operation contention, and the public N64 font atlas. Earlier private-build hardware results do not qualify this beta. Use [the beta checklist](docs/beta-testing.md) to record a result.
 

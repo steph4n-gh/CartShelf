@@ -4,7 +4,7 @@ Use a spare SD card for your first beta test. Card replacement erases the select
 
 ## Install the beta
 
-1. Download `CartShelf-0.7.0-beta.1-macos-arm64.zip` from [the beta release](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.1).
+1. Download `CartShelf-0.7.0-beta.2-macos-arm64.zip` from [the beta release](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.2).
 2. Extract the ZIP.
 3. Move `CartShelf.app` to Applications or another normal mounted drive.
 4. Open CartShelf on an Apple Silicon Mac running macOS 14 or later.

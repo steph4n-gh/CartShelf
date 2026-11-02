@@ -13,7 +13,7 @@ body:
     attributes:
       label: CartShelf version
       description: Copy the version from the app header or release name.
-      placeholder: 0.7.0-beta.1
+      placeholder: 0.7.0-beta.2
     validations:
       required: true
   - type: input
