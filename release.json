@@ -2,7 +2,7 @@
   "schema": 1,
   "version": "0.7.0-beta.1",
   "bundle_version": "0.7.0",
-  "build": 16,
+  "build": 17,
   "channel": "beta",
   "minimum_macos": "14.0",
   "bundle_id": "dev.cartshelf.app",

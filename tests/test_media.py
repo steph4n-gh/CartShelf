@@ -1517,7 +1517,7 @@ class AllFilesBackupTests(unittest.TestCase):
 
 class AuthopenDescriptorTests(unittest.TestCase):
     def setUp(self):
-        self.temporary = tempfile.TemporaryDirectory(prefix="authopen-fixture-", dir=ROOT / "tmp")
+        self.temporary = tempfile.TemporaryDirectory(prefix="authopen-fixture-")
         self.addCleanup(self.temporary.cleanup)
         self.path = Path(self.temporary.name) / "card-fixture"
         self.path.write_bytes(b"unchanged card fixture")

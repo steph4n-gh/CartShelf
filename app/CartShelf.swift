@@ -1275,7 +1275,7 @@ private enum Backend {
     func run(_ command: [String], media: Bool = false, experience: Bool = false) async throws -> Data {
         let id = operationId
         return try await Backend.run(command, media: media, experience: experience) { [weak self] event in
-            Task { @MainActor in
+            Task { @MainActor [weak self] in
                 guard let self, self.busy, self.operationId == id else { return }
                 self.operation = .running(event.message.isEmpty ? self.operation.message : event.message, event, allowsBrowsing: self.operation.allowsBrowsing, allowsQuit: self.operation.allowsQuit)
             }
