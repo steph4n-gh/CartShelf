@@ -191,6 +191,14 @@ def build_harness(work: Path, fixture_parent: Path, harness: str = HARNESS) -> t
     return executable, library
 
 
+def review_fixture_source(source: str) -> str:
+    source = source.split('@main struct CartShelfApp: App {')[0]
+    source = source.replace('.task { model.start(); browserFocused = true }', '.task { browserFocused = true }')
+    start = source.index('    func install() {')
+    end = source.index('\n    }\n', start) + len('\n    }\n')
+    return source[:start] + '    func install() { operation = .idle("Display-only fixture. No card is accessed.") }\n' + source[end:]
+
+
 def build_review_preview(work: Path, fixture_parent: Path) -> Path:
     """Build a display-only review fixture without launching it or accessing cards."""
     harness = r'''
@@ -219,11 +227,7 @@ struct CatalogEnvelope: Decodable { let snapshot: LibrarySnapshot }
 '''
     work.mkdir(parents=True, exist_ok=True)
     library = write_fixtures(fixture_parent)
-    source = (ROOT / 'app/CartShelf.swift').read_text().split('@main struct CartShelfApp: App {')[0]
-    source = source.replace('.task { model.start(); browserFocused = true }', '.task { browserFocused = true }')
-    start = source.index('    func install() {')
-    end = source.index('    func backupCard() {', start)
-    source = source[:start] + '    func install() { operation = .idle("Display-only fixture. No card is accessed.") }\n' + source[end:]
+    source = review_fixture_source((ROOT / 'app/CartShelf.swift').read_text())
     source_path = work / 'ReviewFixture.swift'
     source_path.write_text(source + '\n' + harness)
     bundle = work / 'ReviewFixture.app'

@@ -88,5 +88,30 @@ class PackageBoundaryTests(unittest.TestCase):
                 verifier.verify(app, tls=False, work_dir=APP.parent / 'build')
 
 
+class ReviewFixtureSourceTests(unittest.TestCase):
+    def test_disables_install_without_deleting_the_recovery_action(self):
+        path = APP / 'verify_frontend.py'
+        spec = importlib.util.spec_from_file_location('fixture_source_check', path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        source = '''struct Example {
+    func install() {
+        action {
+            writeCard()
+        }
+    }
+    func reviewRecoveryBackup() { selectBackup() }
+    func backupCard() { preserveCard() }
+}
+@main struct CartShelfApp: App { }
+'''
+        transformed = module.review_fixture_source(source)
+        self.assertNotIn('writeCard()', transformed)
+        self.assertIn('func reviewRecoveryBackup() { selectBackup() }', transformed)
+        self.assertIn('func backupCard() { preserveCard() }', transformed)
+        self.assertIn('Display-only fixture. No card is accessed.', transformed)
+        self.assertNotIn('@main', transformed)
+
+
 if __name__ == '__main__':
     unittest.main()
