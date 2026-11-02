@@ -1104,7 +1104,7 @@ class Library:
             result = media.create_image(self.root, destination)
             image_path = str(result.get('image_path') or result.get('path')) if isinstance(result, dict) else str(result)
         result_path = image_path if format == 'image' else str(zip_destination) if format == 'zip' else str(destination)
-        message = f'Prepared and verified {len(plan)} ROM files for {PROFILES[profile]["cartridge"]}.'
+        message = f'Prepared and verified {len(plan)} ROM file{"" if len(plan) == 1 else "s"} for {PROFILES[profile]["cartridge"]}.'
         if not has_os:
             message += ' This games-only pack needs the card\'s existing GBCSYS operating system.'
         return {

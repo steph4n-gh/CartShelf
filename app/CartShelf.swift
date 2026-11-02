@@ -1810,24 +1810,23 @@ private struct PixelScrollView<Content: View>: View {
     var body: some View {
         GeometryReader { viewport in
             let overflows = contentHeight > viewport.size.height + 1
-            ScrollView(.vertical, showsIndicators: false) {
-                content.background {
-                    GeometryReader { geometry in
-                        Color.clear.onChange(of: geometry.size.height, initial: true) { _, height in
-                            contentHeight = height
+            VStack(spacing: 0) {
+                ScrollView(.vertical, showsIndicators: false) {
+                    content.background {
+                        GeometryReader { geometry in
+                            Color.clear.onChange(of: geometry.size.height, initial: true) { _, height in
+                                contentHeight = height
+                            }
                         }
                     }
-                }
-            }
-            .scrollIndicators(.never)
-            .padding(.bottom, overflows ? 18 : 0)
-            .overlay(alignment: .bottomTrailing) {
+                }.scrollIndicators(.never)
                 if overflows {
-                    Text("SCROLL").font(pixel(7)).foregroundStyle(quiet)
-                        .padding(.horizontal, 5).padding(.vertical, 3).background(.black)
-                        .overlay(Rectangle().stroke(quiet.opacity(0.45), lineWidth: 1))
-                        .padding(3)
-                        .allowsHitTesting(false).accessibilityHidden(true)
+                    HStack {
+                        Spacer()
+                        Text("SCROLL").font(pixel(7)).foregroundStyle(quiet)
+                            .padding(.horizontal, 5).padding(.vertical, 3)
+                            .overlay(Rectangle().stroke(quiet.opacity(0.45), lineWidth: 1))
+                    }.padding(3).background(.black).accessibilityHidden(true)
                 }
             }
         }
@@ -2895,7 +2894,7 @@ struct CartShelfView: View {
                         ForEach(inspection.recipe.games) { game in
                             let missing = inspection.missing.contains { $0.sha256 == game.sha256 }
                             HStack(alignment: .top, spacing: 10) {
-                                Text(missing ? "?" : "X").font(pixel(12)).foregroundStyle(missing ? .orange : .green)
+                                Text(missing ? "?" : "✓").font(.system(size: 12, weight: .bold, design: .monospaced)).foregroundStyle(missing ? .orange : .green)
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(game.title).font(.system(size: 12, weight: .semibold, design: .monospaced))
                                     Text(game.version + " / " + game.sha256.prefix(16)).font(.system(size: 10, design: .monospaced)).foregroundStyle(quiet)
@@ -2935,7 +2934,7 @@ struct CartShelfView: View {
         if let saves = preview.saves {
             previewSaves("FROM THIS CARD", saves.current, color: .green)
             previewSaves("FROM VERIFIED HISTORY", saves.history, color: yellow)
-            previewSaves("YOUR EARLIER SAVE CHOICES", saves.selectedEarlier, color: .orange)
+            previewSaves("FROM YOUR EARLIER SAVE CHOICES", saves.selectedEarlier, color: .orange)
             previewSaves("PRESERVED WITHOUT AUTOMATIC MAPPING", saves.keptInBackup, color: quiet)
             ForEach(Array(saves.warnings.enumerated()), id: \.offset) { _, warning in
                 Text(warning).font(.system(size: 11, design: .monospaced)).foregroundStyle(.orange)
@@ -2968,6 +2967,7 @@ struct CartShelfView: View {
                         Text(save.path ?? "Save bundle").foregroundStyle(.white)
                         if let reason = save.reason { Text(reason).foregroundStyle(quiet) }
                     }.font(.system(size: 10, design: .monospaced)).textSelection(.enabled)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.padding(.vertical, 7)
         } label: { Text("\(saves.count) \(saves.count == 1 ? "SAVE FILE" : "SAVE FILES") \(label)").font(pixel(9)).foregroundStyle(color) }
@@ -2986,12 +2986,17 @@ struct CartShelfView: View {
                         Text(plan.imageKind == "file-backup" ? "FILE BACKUP TO RESTORE" : "IMAGE").font(pixel(10)).foregroundStyle(quiet)
                         Text(plan.imagePath).font(.system(size: 11, design: .monospaced)).textSelection(.enabled)
                         Text("SHA256 " + plan.imageSha256).font(.system(size: 9, design: .monospaced)).foregroundStyle(quiet).textSelection(.enabled)
-                        Text(plan.backupLabel + " BACKUP WILL BE SAVED TO").font(pixel(10)).foregroundStyle(yellow)
-                        Text(plan.backupPath).font(.system(size: 11, design: .monospaced)).textSelection(.enabled)
                         Text(plan.replacementSummary).font(.system(size: 12, design: .monospaced)).foregroundStyle(Color(white: 0.72))
-                        if let description = plan.backupScopeDescription { Text(description).font(.system(size: 11, design: .monospaced)).foregroundStyle(.orange) }
                     }.padding(4)
                 }.modifier(Bevel())
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(plan.backupLabel + " BACKUP WILL BE SAVED TO").font(pixel(10)).foregroundStyle(yellow)
+                    Text(plan.backupPath).font(.system(size: 11, design: .monospaced)).lineLimit(2).truncationMode(.middle)
+                        .textSelection(.enabled).help(plan.backupPath)
+                    if let description = plan.backupScopeDescription {
+                        Text(description).font(.system(size: 11, design: .monospaced)).foregroundStyle(.orange).fixedSize(horizontal: false, vertical: true)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .leading).padding(12).background(Color(white: 0.08))
                 HStack(spacing: 12) {
                     PixelButton(title: "CANCEL") { model.showPlan = false; model.plan = nil }
                     PixelButton(title: plan.isBackupRestore ? "BACK UP & RESTORE" : "BACK UP & REPLACE", primary: true, danger: true) { model.install() }
