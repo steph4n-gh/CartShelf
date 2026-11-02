@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "asset_set": "cartshelf-64-original",
+  "vendor_bitmap_included": false,
+  "font_source": "https://github.com/googlefonts/silkscreen",
+  "font_name": "CartShelf Menu",
+  "font_glyph_count": 128,
+  "font_cell_pixels": [
+    10,
+    8
+  ],
+  "font_atlas_pixels": [
+    160,
+    64
+  ],
+  "simulations_only": true,
+  "hardware_tested": false,
+  "files": [
+    {
+      "path": "build_theme.py",
+      "bytes": 26250,
+      "sha256": "379d0da252dbcd13a3ea5ab59e7f698695045b28da1c83a8420fe216ba5934d7",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "verify_theme.py",
+      "bytes": 15809,
+      "sha256": "acebfd2adaa6cdc252bf3b9b1b4d78fe67f8dca14f22da525410f8f9eeb12c4e",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1500,
+      "sha256": "d2bc9270ffeeb5230d2312d43a2cb8d860d4bec6d82100bbf138f147aa833d12",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "LICENSE-ASSETS.md",
+      "bytes": 1059,
+      "sha256": "b606e6071af884b485f81bc2e0766b7dc262bb8b35f39985971f3409a09ce5c2",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "source/theme.ini",
+      "bytes": 1451,
+      "sha256": "b7840820eb0fd0bd4c1dcc5bb5bf992f7f5a64ca5330b2ada140ff9854c875d0",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "source/Silkscreen-Bold.ttf",
+      "bytes": 30632,
+      "sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+      "license": "OFL-1.1"
+    },
+    {
+      "path": "source/OFL.txt",
+      "bytes": 4394,
+      "sha256": "86c5e9c9382cdcc5948704fdfe60f2aa164a719746931219a42736ecd9cefbd3",
+      "license": "OFL-1.1"
+    },
+    {
+      "path": "source/font10.png",
+      "bytes": 1493,
+      "sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222",
+      "license": "OFL-1.1"
+    },
+    {
+      "path": "source/background.png",
+      "bytes": 1140,
+      "sha256": "60c12bfc80d0956ed9aa6914d549ff29b2488163261c504d8040b8388c62af03",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "dist/CartShelf-64.bgr",
+      "bytes": 4192,
+      "sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+      "license": "GPL-3.0-only AND OFL-1.1"
+    },
+    {
+      "path": "dist/CartShelf-64-background.png",
+      "bytes": 733,
+      "sha256": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "preview/scarlet-menu-native-640x240.png",
+      "bytes": 5780,
+      "sha256": "f550da23c93e85039d51f24b0ff4cf44880d8a81105d2ebcce48bfe64dc107ae",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "preview/scarlet-popup-native-640x240.png",
+      "bytes": 6376,
+      "sha256": "952e88e9092e6b2316e1278d1d8207823c15efe1ad844f2204905af2f312100e",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "VERIFICATION.json",
+      "bytes": 7291,
+      "sha256": "ffea33544e2d6be17ab094fbc3ed3c1124f7ab8d14709351ab2fb13e49a7f1ca",
+      "license": "GPL-3.0-only"
+    },
+    {
+      "path": "INDEPENDENT_CHECK.json",
+      "bytes": 5954,
+      "sha256": "899ddffbef2c07fc07034ab83e913bc5d236adb471a46aa68a9c40485acf073d",
+      "license": "GPL-3.0-only"
+    }
+  ]
+}

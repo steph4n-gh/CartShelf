@@ -1,0 +1,287 @@
+{
+  "theme": "CartShelf-64",
+  "chosen_variant": "scarlet",
+  "format_checks_passed": true,
+  "hardware_tested": false,
+  "card_written": false,
+  "format_reference": "https://krikzz.com/pub/support/everdrive-64/pro-series/",
+  "native_framebuffer": [
+    640,
+    240
+  ],
+  "labelled_aspect_preview": [
+    640,
+    480
+  ],
+  "small_aspect_preview": [
+    320,
+    240
+  ],
+  "body_glyph_pixels": [
+    10,
+    8
+  ],
+  "glyph_grid": [
+    64,
+    30
+  ],
+  "font_rgb_first_seen": [
+    [
+      255,
+      0,
+      255
+    ],
+    [
+      255,
+      255,
+      255
+    ]
+  ],
+  "menu_cells": {
+    "fm_hdr": [
+      4,
+      7,
+      56,
+      1
+    ],
+    "fm_list": [
+      4,
+      9,
+      56,
+      17
+    ],
+    "fm_foot": [
+      4,
+      27,
+      56,
+      1
+    ]
+  },
+  "text_alignment": {
+    "vendor_get_pos": {
+      "0": "center",
+      "1": "start",
+      "2": "end",
+      "3": "explicit"
+    },
+    "header_runs": [
+      [
+        26,
+        7,
+        "Page 1 of 2"
+      ]
+    ],
+    "footer_runs": [
+      [
+        23,
+        27,
+        "Pocket Racers.z64"
+      ]
+    ],
+    "long_footer_runs": [
+      [
+        4,
+        27,
+        "CartShelf Demo - A Very Long Adventure Title - Extended "
+      ]
+    ],
+    "long_footer_input": "CartShelf Demo - A Very Long Adventure Title - Extended Edition (v1.0).z64",
+    "long_footer_input_characters": 74,
+    "long_footer_visible_characters": 56,
+    "footer_last_pixel_row": 223,
+    "bottom_frame_first_pixel_row": 229
+  },
+  "branding": {
+    "method": "Deterministic hand bitmap lettering, no TrueType rasterization in theme artwork.",
+    "glyph_grid": [
+      5,
+      7
+    ],
+    "logical_canvas": [
+      320,
+      240
+    ],
+    "runs": [
+      {
+        "xy": [
+          20,
+          16
+        ],
+        "text": "CARTSHELF",
+        "pixel_scale": 2,
+        "color": "rainbow"
+      },
+      {
+        "xy": [
+          21,
+          35
+        ],
+        "text": "EVERDRIVE-64 PRO",
+        "pixel_scale": 1,
+        "color": "#949494"
+      },
+      {
+        "xy": [
+          240,
+          20
+        ],
+        "text": "64",
+        "pixel_scale": 2,
+        "color": "#ffdb0d"
+      }
+    ],
+    "yellow_64_ink_pixel_rows": [
+      20,
+      33
+    ],
+    "console_ink_pixel_rows": [
+      17,
+      35
+    ],
+    "header_slab_pixel_rows": [
+      52,
+      68
+    ],
+    "header_ink_pixel_rows": [
+      57,
+      63
+    ]
+  },
+  "context_popup": {
+    "source_style": "menu_base",
+    "illustrative_content_size_cells": [
+      26,
+      5
+    ],
+    "content_cells": [
+      19,
+      12,
+      26,
+      5
+    ],
+    "border_palette_base": 32,
+    "border_background_rgb": [
+      8,
+      8,
+      8
+    ],
+    "border_glyphs": [
+      1,
+      2,
+      4,
+      8,
+      5,
+      9,
+      6,
+      10
+    ],
+    "shade": 0,
+    "scope": "Vendor GuiWin.Draw border, padding, and GetPos semantics. Illustrative options only; firmware strings and dialog runtime remain unqualified."
+  },
+  "preview_row_count": 17,
+  "maximum_preview_name_characters": 19,
+  "available_name_characters": 51,
+  "preview_scope": "Vendor tool geometry, GetPos text alignment, hard character wrapping limited to window height, palette and border semantics with illustrative strings. Native 640x240 and direct nearest-neighbor 640x480 4:3 approximation. Firmware owns real text. Capture scaling and overscan remain untested.",
+  "png_fallback_scope": "Quiet PNG-8 wallpaper with no embedded font, palette, or layout settings. It is intentionally adapted for the vendor default geometry.",
+  "font_provenance": {
+    "name": "CartShelf Menu",
+    "license": "OFL-1.1",
+    "source": "Silkscreen-Bold.ttf",
+    "vendor_font_used": false,
+    "source_sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+    "atlas_sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222"
+  },
+  "preview_titles": "Authored fictional titles; no ROM bytes or game artwork.",
+  "source_sha256": {
+    "OFL.txt": "86c5e9c9382cdcc5948704fdfe60f2aa164a719746931219a42736ecd9cefbd3",
+    "Silkscreen-Bold.ttf": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+    "background.png": "60c12bfc80d0956ed9aa6914d549ff29b2488163261c504d8040b8388c62af03",
+    "font10.png": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222",
+    "theme.ini": "b7840820eb0fd0bd4c1dcc5bb5bf992f7f5a64ca5330b2ada140ff9854c875d0"
+  },
+  "variants": {
+    "scarlet": {
+      "sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+      "bytes": 4192,
+      "sections": {
+        "settings": {
+          "offset": 64,
+          "length": 1451,
+          "sha256": "b7840820eb0fd0bd4c1dcc5bb5bf992f7f5a64ca5330b2ada140ff9854c875d0"
+        },
+        "font": {
+          "offset": 1520,
+          "length": 1493,
+          "sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222"
+        },
+        "background": {
+          "offset": 3024,
+          "length": 1140,
+          "sha256": "60c12bfc80d0956ed9aa6914d549ff29b2488163261c504d8040b8388c62af03"
+        },
+        "tail": {
+          "offset": 4176,
+          "length": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        }
+      }
+    },
+    "graphite": {
+      "sha256": "96ba82d2421c608e0cfb89d53f5beb3e6c8b7aaf9d3b42de90018ba3a7aee1ed",
+      "bytes": 4192,
+      "sections": {
+        "settings": {
+          "offset": 64,
+          "length": 1451,
+          "sha256": "442ad9e2e38190da9621dd441cb73015a499288952a5d790065d1e16b59bdbb9"
+        },
+        "font": {
+          "offset": 1520,
+          "length": 1493,
+          "sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222"
+        },
+        "background": {
+          "offset": 3024,
+          "length": 1144,
+          "sha256": "2406930eb38e549aa08c69c8d239257776555eb8ca2692ec0be0783388f77084"
+        },
+        "tail": {
+          "offset": 4176,
+          "length": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        }
+      }
+    },
+    "violet": {
+      "sha256": "d4f6415e04c1d397b1d9dc4e8bea4b3e33e1979926dbced3c5ed8149aeec548e",
+      "bytes": 4192,
+      "sections": {
+        "settings": {
+          "offset": 64,
+          "length": 1451,
+          "sha256": "50f5b9cd8ac60c6391787a1ca2ac8ee2e2afe0856670bb68c874557e23c0aac3"
+        },
+        "font": {
+          "offset": 1520,
+          "length": 1493,
+          "sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222"
+        },
+        "background": {
+          "offset": 3024,
+          "length": 1144,
+          "sha256": "3050d21ae095dde810eab996941fc809fadc72210ae3417b173ec9c33dbc788c"
+        },
+        "tail": {
+          "offset": 4176,
+          "length": 16,
+          "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+        }
+      }
+    }
+  },
+  "install_files_sha256": {
+    "Themes/CartShelf-64.bgr": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+    "Themes/CartShelf-64-background.png": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58"
+  },
+  "zip_sha256": "43d72b2414b264b003653f85f4bc5e99b862955c5b2653b2308c4d04b7998214"
+}

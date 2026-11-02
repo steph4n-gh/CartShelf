@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "python_version": "3.13.18",
+  "python_release": "20261026",
+  "python": {
+    "arm64": {
+      "filename": "cpython-3.13.18+20261026-aarch64-apple-darwin-install_only_stripped.tar.gz",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.13.18%2B20261026-aarch64-apple-darwin-install_only_stripped.tar.gz",
+      "sha256": "8392b6ea51d94391befb2c31ebe75463f045d0b69dfcf5e1bb3234e1f5fa3405",
+      "bytes": 25265774
+    },
+    "x86_64": {
+      "filename": "cpython-3.13.18+20261026-x86_64-apple-darwin-install_only_stripped.tar.gz",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261026/cpython-3.13.18%2B20261026-x86_64-apple-darwin-install_only_stripped.tar.gz",
+      "sha256": "7412c19d896c99431b74a18a5643e110449a7f9590fbab179c3e5ab27b9aa9e3",
+      "bytes": 25055263
+    }
+  },
+  "dependencies": [
+    {
+      "name": "Pillow",
+      "version": "13.0.0",
+      "architectures": {
+        "arm64": {
+          "filename": "pillow-13.0.0-cp313-cp313-macosx_11_0_arm64.whl",
+          "url": "https://files.pythonhosted.org/packages/98/c8/ccede3dcc4f274b80fb49199eed1ef34ba05566c8b71976b9d1f111da2e3/pillow-13.0.0-cp313-cp313-macosx_11_0_arm64.whl",
+          "sha256": "f11a3c1358bb3c68012a7b1f41b223c3db9f7bfde90b481df028cfe1c3363313",
+          "bytes": 4852187
+        },
+        "x86_64": {
+          "filename": "pillow-13.0.0-cp313-cp313-macosx_10_13_x86_64.whl",
+          "url": "https://files.pythonhosted.org/packages/08/bc/578ab2eaa04705a8978bd9be0fe15c3d43a8fc95097c4f7e39540e79e4fa/pillow-13.0.0-cp313-cp313-macosx_10_13_x86_64.whl",
+          "sha256": "ef5fe6b7db3f501c56000ba8fe7c7e1a35ca1d45824fbeb95a67daa85cff4dbe",
+          "bytes": 5568469
+        }
+      }
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "architectures": {
+        "arm64": {
+          "filename": "pyyaml-6.0.3-cp313-cp313-macosx_11_0_arm64.whl",
+          "url": "https://files.pythonhosted.org/packages/b1/16/95309993f1d3748cd644e02e38b75d50cbc0d9561d21f390a76242ce073f/pyyaml-6.0.3-cp313-cp313-macosx_11_0_arm64.whl",
+          "sha256": "2283a07e2c21a2aa78d9c4442724ec1eb15f5e42a723b99cb3d822d48f5f7ad1",
+          "bytes": 173252
+        },
+        "x86_64": {
+          "filename": "pyyaml-6.0.3-cp313-cp313-macosx_10_13_x86_64.whl",
+          "url": "https://files.pythonhosted.org/packages/d1/11/0fd08f8192109f7169db964b5707a2f1e8b745d4e239b784a5a1dd80d1db/pyyaml-6.0.3-cp313-cp313-macosx_10_13_x86_64.whl",
+          "sha256": "8da9669d359f02c0b91ccc01cac4a67f16afec0dac22c2ad09f46bee0697eba8",
+          "bytes": 181669
+        }
+      }
+    }
+  ],
+  "metadata_sources": [
+    "https://api.github.com/repos/astral-sh/python-build-standalone/releases/tags/20261026",
+    "https://pypi.org/pypi/Pillow/json",
+    "https://pypi.org/pypi/PyYAML/json"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "all_checks_passed": true,
+  "independent_of_builder_helpers": true,
+  "package_sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+  "variants": {
+    "scarlet": {
+      "sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+      "bytes": 4192
+    },
+    "graphite": {
+      "sha256": "96ba82d2421c608e0cfb89d53f5beb3e6c8b7aaf9d3b42de90018ba3a7aee1ed",
+      "bytes": 4192
+    },
+    "violet": {
+      "sha256": "d4f6415e04c1d397b1d9dc4e8bea4b3e33e1979926dbced3c5ed8149aeec548e",
+      "bytes": 4192
+    }
+  },
+  "font_source_license": "OFL-1.1",
+  "vendor_font_bytes_used": false,
+  "exact_bar_glyph_pixels_match_embedded_ini": {
+    "fm_hdr_11_characters": [
+      26,
+      7,
+      "Page 1 of 2"
+    ],
+    "fm_foot_17_characters": [
+      23,
+      27,
+      "Pocket Racers.z64"
+    ],
+    "fm_foot_74_characters": [
+      4,
+      27,
+      "CartShelf Demo - A Very Long Adventure Title - Extended "
+    ]
+  },
+  "long_footer": {
+    "input_characters": 74,
+    "visible_characters": 56,
+    "clipped_characters": 18,
+    "adds_ellipsis": false,
+    "last_drawable_pixel_row": 223,
+    "bottom_frame_first_pixel_row": 229
+  },
+  "popup_border_cells_checked": 74,
+  "popup_border_pixels_checked": 5920,
+  "popup_background_and_border_fully_opaque": true,
+  "popup_exact_glyph_pixels_match": true,
+  "branding_exact_mask_pixels_checked": 4914,
+  "branding_open_space_points": {
+    "E": [
+      2,
+      1
+    ],
+    "A": [
+      2,
+      1
+    ],
+    "R": [
+      2,
+      1
+    ],
+    "6": [
+      2,
+      4
+    ],
+    "4": [
+      2,
+      3
+    ]
+  },
+  "banner_no_accent_halo": true,
+  "banner_slab_and_actual_glyph_ink_share_center_row": 60,
+  "actual_preview_selection_rgb": [
+    248,
+    216,
+    8
+  ],
+  "native_framebuffer": [
+    640,
+    240
+  ],
+  "direct_4_to_3_approximation": [
+    640,
+    480
+  ],
+  "all_labelled_previews_preserve_native_font_columns": true,
+  "small_4_to_3_approximation": [
+    320,
+    240
+  ],
+  "small_previews_match_documented_reduction": true,
+  "install_files_match_dist_and_zip": true,
+  "zip_sha256": "43d72b2414b264b003653f85f4bc5e99b862955c5b2653b2308c4d04b7998214",
+  "rebuilt_artifact_count": 32,
+  "rebuild_hashes_unchanged": true,
+  "deterministic_artifact_sha256": {
+    "archive/CartShelf-64.zip": "43d72b2414b264b003653f85f4bc5e99b862955c5b2653b2308c4d04b7998214",
+    "VERIFICATION.json": "ffea33544e2d6be17ab094fbc3ed3c1124f7ab8d14709351ab2fb13e49a7f1ca",
+    "dist/CartShelf-64-background.png": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58",
+    "dist/CartShelf-64.bgr": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+    "install/README.txt": "87cf693fd686e91ff62a7b3a9c0b753a144fa238ff18cc61b435b9f813d52fc1",
+    "install/Themes/CartShelf-64-background.png": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58",
+    "install/Themes/CartShelf-64.bgr": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+    "preview/CartShelf-64-options.png": "6fea736558d474030e73969c3c7c24ecbf941a5d07dca0ea610ab047ca326cc6",
+    "preview/alternatives/graphite/CartShelf-64-graphite.bgr": "96ba82d2421c608e0cfb89d53f5beb3e6c8b7aaf9d3b42de90018ba3a7aee1ed",
+    "preview/alternatives/graphite/background.png": "2406930eb38e549aa08c69c8d239257776555eb8ca2692ec0be0783388f77084",
+    "preview/alternatives/graphite/theme.ini": "442ad9e2e38190da9621dd441cb73015a499288952a5d790065d1e16b59bdbb9",
+    "preview/alternatives/violet/CartShelf-64-violet.bgr": "d4f6415e04c1d397b1d9dc4e8bea4b3e33e1979926dbced3c5ed8149aeec548e",
+    "preview/alternatives/violet/background.png": "3050d21ae095dde810eab996941fc809fadc72210ae3417b173ec9c33dbc788c",
+    "preview/alternatives/violet/theme.ini": "50f5b9cd8ac60c6391787a1ca2ac8ee2e2afe0856670bb68c874557e23c0aac3",
+    "preview/graphite-menu-320x240.png": "2687862bb112b017d6ed9f9fcd4aab46d49931520bb2e02cb4c4326f49a40a84",
+    "preview/graphite-menu-labelled.png": "23b2b99c2693285c0e1bb92907f76fd6c6dd8466d0140b0d5f154364edee9290",
+    "preview/graphite-menu-native-640x240.png": "4537e13f2628d4d1fd3ef180dd112758ac8e28cdc1b2820b570a9a7270a16e5d",
+    "preview/scarlet-long-filename-labelled.png": "8c505fb9b3b50db49343c112321877593aef4f3797135cd9ab1b1ccfb732e338",
+    "preview/scarlet-long-filename-native-640x240.png": "4c3a1e40d359af994862ef8870d5443620a492c6ed0fe652355bc491079bac42",
+    "preview/scarlet-menu-320x240.png": "2dcd94785e2ec422a819905ba97b41a0eef420b37f9bec01e2780f780a866b07",
+    "preview/scarlet-menu-labelled.png": "85e5e88198e73054f47f646519049a781033e2b502fd566303996b04718ac376",
+    "preview/scarlet-menu-native-640x240.png": "f550da23c93e85039d51f24b0ff4cf44880d8a81105d2ebcce48bfe64dc107ae",
+    "preview/scarlet-popup-labelled.png": "cf93c0447686f60c5142cfb3fab9da7d30781db41e92376eadbba29383bf39b1",
+    "preview/scarlet-popup-native-640x240.png": "952e88e9092e6b2316e1278d1d8207823c15efe1ad844f2204905af2f312100e",
+    "preview/violet-menu-320x240.png": "6736250e60981a5e5f6edec08252307fff7ce7376988429c7d4519487e634f04",
+    "preview/violet-menu-labelled.png": "979d586d2cc7607af7b43c11b1c7b4069874b371517f3a50636227b186121c44",
+    "preview/violet-menu-native-640x240.png": "90d85b0c27554d15c2455fa136bbf7500b4d581eb138a062eca86e44587cb82d",
+    "source/OFL.txt": "86c5e9c9382cdcc5948704fdfe60f2aa164a719746931219a42736ecd9cefbd3",
+    "source/Silkscreen-Bold.ttf": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+    "source/background.png": "60c12bfc80d0956ed9aa6914d549ff29b2488163261c504d8040b8388c62af03",
+    "source/font10.png": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222",
+    "source/theme.ini": "b7840820eb0fd0bd4c1dcc5bb5bf992f7f5a64ca5330b2ada140ff9854c875d0"
+  },
+  "card_accessed": false,
+  "hardware_tested": false,
+  "unqualified": [
+    "Firmware strings and dialog runtime",
+    "Physical theme loading",
+    "TV scaling and overscan"
+  ]
+}

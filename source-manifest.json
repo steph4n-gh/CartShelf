@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "files": {
+    ".github/workflows/checks.yml": {
+      "kind": "text"
+    },
+    ".gitignore": {
+      "kind": "text"
+    },
+    "CONTRIBUTING.md": {
+      "kind": "text"
+    },
+    "LICENSE": {
+      "kind": "text"
+    },
+    "README.md": {
+      "kind": "text"
+    },
+    "SECURITY.md": {
+      "kind": "text"
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "kind": "text"
+    },
+    "app/CartShelf.swift": {
+      "kind": "text"
+    },
+    "app/Resources/OFL.txt": {
+      "kind": "text"
+    },
+    "app/Resources/Silkscreen-Bold.ttf": {
+      "kind": "asset",
+      "sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+      "notice": "app/Resources/OFL.txt"
+    },
+    "app/Resources/Silkscreen-Regular.ttf": {
+      "kind": "asset",
+      "sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8",
+      "notice": "app/Resources/OFL.txt"
+    },
+    "app/build.py": {
+      "kind": "text"
+    },
+    "app/media_bundle.py": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.bdb.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.bzip2.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.cpython.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.expat.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libX11.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libXau.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libedit.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libffi.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.liblzma.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libuuid.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.libxcb.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.mpdecimal.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.ncurses.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.openssl-3.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.sqlite.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.tcl.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.tix.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.zlib-ng.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.zlib.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/LICENSE.zstd.txt": {
+      "kind": "text"
+    },
+    "app/runtime-licenses/PROVENANCE.json": {
+      "kind": "text"
+    },
+    "app/runtime-lock.json": {
+      "kind": "text"
+    },
+    "app/runtime.py": {
+      "kind": "text"
+    },
+    "app/verify_browser_performance.py": {
+      "kind": "text"
+    },
+    "app/verify_embedded_media.py": {
+      "kind": "text"
+    },
+    "app/verify_frontend.py": {
+      "kind": "text"
+    },
+    "app/verify_images.py": {
+      "kind": "text"
+    },
+    "app/verify_runtime.py": {
+      "kind": "text"
+    },
+    "card_saves.py": {
+      "kind": "text"
+    },
+    "cart_updates.py": {
+      "kind": "text"
+    },
+    "docs/backup-and-recovery.md": {
+      "kind": "text"
+    },
+    "docs/beta-testing.md": {
+      "kind": "text"
+    },
+    "docs/build-and-release.md": {
+      "kind": "text"
+    },
+    "docs/system-files.md": {
+      "kind": "text"
+    },
+    "handheld_metadata.py": {
+      "kind": "text"
+    },
+    "library_experience.py": {
+      "kind": "text"
+    },
+    "library_manager.py": {
+      "kind": "text"
+    },
+    "media.py": {
+      "kind": "text"
+    },
+    "prepare_everdrive64.py": {
+      "kind": "text"
+    },
+    "prepared_images.py": {
+      "kind": "text"
+    },
+    "recipes.py": {
+      "kind": "text"
+    },
+    "release.json": {
+      "kind": "text"
+    },
+    "requirements-dev.txt": {
+      "kind": "text"
+    },
+    "rom_verifier.py": {
+      "kind": "text"
+    },
+    "source-manifest.json": {
+      "kind": "text"
+    },
+    "system_files.py": {
+      "kind": "text"
+    },
+    "tests/fixtures/modretro-games-changelog.yaml": {
+      "kind": "text"
+    },
+    "tests/test_beta_media_saves.py": {
+      "kind": "text"
+    },
+    "tests/test_builtin_sd.py": {
+      "kind": "text"
+    },
+    "tests/test_card_saves.py": {
+      "kind": "text"
+    },
+    "tests/test_cart_updates.py": {
+      "kind": "text"
+    },
+    "tests/test_default_themes.py": {
+      "kind": "text"
+    },
+    "tests/test_disk_description.py": {
+      "kind": "text"
+    },
+    "tests/test_handheld_metadata.py": {
+      "kind": "text"
+    },
+    "tests/test_library_experience.py": {
+      "kind": "text"
+    },
+    "tests/test_library_manager.py": {
+      "kind": "text"
+    },
+    "tests/test_mac_packaging.py": {
+      "kind": "text"
+    },
+    "tests/test_media.py": {
+      "kind": "text"
+    },
+    "tests/test_portable_library.py": {
+      "kind": "text"
+    },
+    "tests/test_prepared_images.py": {
+      "kind": "text"
+    },
+    "tests/test_protected_disk_probe.py": {
+      "kind": "text"
+    },
+    "tests/test_public_theme.py": {
+      "kind": "text"
+    },
+    "tests/test_publication.py": {
+      "kind": "text"
+    },
+    "tests/test_recipes.py": {
+      "kind": "text"
+    },
+    "tests/test_rom_verifier.py": {
+      "kind": "text"
+    },
+    "tests/test_save_namespaces.py": {
+      "kind": "text"
+    },
+    "tests/test_system_files.py": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/INDEPENDENT_CHECK.json": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/LICENSE-ASSETS.md": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/PUBLIC_ASSETS.json": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/README.md": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/VERIFICATION.json": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/build_theme.py": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/dist/CartShelf-64-background.png": {
+      "kind": "asset",
+      "sha256": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/dist/CartShelf-64.bgr": {
+      "kind": "asset",
+      "sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/install/README.txt": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/install/Themes/CartShelf-64-background.png": {
+      "kind": "asset",
+      "sha256": "e6263811cc0b3d2e17ce149ddc239c664e99f9ea5a063c6bf5b8e62607495c58",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/install/Themes/CartShelf-64.bgr": {
+      "kind": "asset",
+      "sha256": "0cd207bfb4d9e73d2a52306cc4ed7b4f15ca2eab7e5e3c2114d7995544a50ff9",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/CartShelf-64-options.png": {
+      "kind": "asset",
+      "sha256": "6fea736558d474030e73969c3c7c24ecbf941a5d07dca0ea610ab047ca326cc6",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/alternatives/graphite/CartShelf-64-graphite.bgr": {
+      "kind": "asset",
+      "sha256": "96ba82d2421c608e0cfb89d53f5beb3e6c8b7aaf9d3b42de90018ba3a7aee1ed",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/alternatives/graphite/background.png": {
+      "kind": "asset",
+      "sha256": "2406930eb38e549aa08c69c8d239257776555eb8ca2692ec0be0783388f77084",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/alternatives/graphite/theme.ini": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/preview/alternatives/violet/CartShelf-64-violet.bgr": {
+      "kind": "asset",
+      "sha256": "d4f6415e04c1d397b1d9dc4e8bea4b3e33e1979926dbced3c5ed8149aeec548e",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/alternatives/violet/background.png": {
+      "kind": "asset",
+      "sha256": "3050d21ae095dde810eab996941fc809fadc72210ae3417b173ec9c33dbc788c",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/alternatives/violet/theme.ini": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/preview/graphite-menu-320x240.png": {
+      "kind": "asset",
+      "sha256": "2687862bb112b017d6ed9f9fcd4aab46d49931520bb2e02cb4c4326f49a40a84",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/graphite-menu-labelled.png": {
+      "kind": "asset",
+      "sha256": "23b2b99c2693285c0e1bb92907f76fd6c6dd8466d0140b0d5f154364edee9290",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/graphite-menu-native-640x240.png": {
+      "kind": "asset",
+      "sha256": "4537e13f2628d4d1fd3ef180dd112758ac8e28cdc1b2820b570a9a7270a16e5d",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-long-filename-labelled.png": {
+      "kind": "asset",
+      "sha256": "8c505fb9b3b50db49343c112321877593aef4f3797135cd9ab1b1ccfb732e338",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-long-filename-native-640x240.png": {
+      "kind": "asset",
+      "sha256": "4c3a1e40d359af994862ef8870d5443620a492c6ed0fe652355bc491079bac42",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-menu-320x240.png": {
+      "kind": "asset",
+      "sha256": "2dcd94785e2ec422a819905ba97b41a0eef420b37f9bec01e2780f780a866b07",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-menu-labelled.png": {
+      "kind": "asset",
+      "sha256": "85e5e88198e73054f47f646519049a781033e2b502fd566303996b04718ac376",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-menu-native-640x240.png": {
+      "kind": "asset",
+      "sha256": "f550da23c93e85039d51f24b0ff4cf44880d8a81105d2ebcce48bfe64dc107ae",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-popup-labelled.png": {
+      "kind": "asset",
+      "sha256": "cf93c0447686f60c5142cfb3fab9da7d30781db41e92376eadbba29383bf39b1",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/scarlet-popup-native-640x240.png": {
+      "kind": "asset",
+      "sha256": "952e88e9092e6b2316e1278d1d8207823c15efe1ad844f2204905af2f312100e",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/violet-menu-320x240.png": {
+      "kind": "asset",
+      "sha256": "6736250e60981a5e5f6edec08252307fff7ce7376988429c7d4519487e634f04",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/violet-menu-labelled.png": {
+      "kind": "asset",
+      "sha256": "979d586d2cc7607af7b43c11b1c7b4069874b371517f3a50636227b186121c44",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/preview/violet-menu-native-640x240.png": {
+      "kind": "asset",
+      "sha256": "90d85b0c27554d15c2455fa136bbf7500b4d581eb138a062eca86e44587cb82d",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/source/OFL.txt": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/source/Silkscreen-Bold.ttf": {
+      "kind": "asset",
+      "sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/source/background.png": {
+      "kind": "asset",
+      "sha256": "60c12bfc80d0956ed9aa6914d549ff29b2488163261c504d8040b8388c62af03",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/source/font10.png": {
+      "kind": "asset",
+      "sha256": "17b20d42173606215063841004fdfc17300c2ec3b444b71deb42f076d51d4222",
+      "notice": "themes/CartShelf-64/LICENSE-ASSETS.md"
+    },
+    "themes/CartShelf-64/source/theme.ini": {
+      "kind": "text"
+    },
+    "themes/CartShelf-64/verify_theme.py": {
+      "kind": "text"
+    },
+    "themes/CartShelf-GB/apply_theme.py": {
+      "kind": "text"
+    },
+    "themes/CartShelf-GB/dist/CartShelf-GB-X7-v1.06-restore.ips": {
+      "kind": "asset",
+      "sha256": "34532fd27124f5bcfcd1c554a89b5246410c5b472f0531bb4e26ce685f0abe97",
+      "notice": "THIRD_PARTY_NOTICES.md"
+    },
+    "themes/CartShelf-GB/dist/CartShelf-GB-X7-v1.06.ips": {
+      "kind": "asset",
+      "sha256": "048d45c1a9d6e4cd235272ce9717c44f4d2ac616c59ca48656fa190dba68fc4e",
+      "notice": "THIRD_PARTY_NOTICES.md"
+    },
+    "tools/check_publication.py": {
+      "kind": "text"
+    }
+  },
+  "required_files": [
+    "LICENSE",
+    "README.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    ".gitignore",
+    "source-manifest.json",
+    "release.json",
+    "requirements-dev.txt",
+    "library_manager.py",
+    "library_experience.py",
+    "recipes.py",
+    "media.py",
+    "card_saves.py",
+    "cart_updates.py",
+    "handheld_metadata.py",
+    "prepare_everdrive64.py",
+    "prepared_images.py",
+    "rom_verifier.py",
+    "app/CartShelf.swift",
+    "app/build.py",
+    "app/runtime-lock.json",
+    "tools/check_publication.py",
+    "app/Resources/OFL.txt",
+    "themes/CartShelf-64/dist/CartShelf-64.bgr",
+    "themes/CartShelf-GB/apply_theme.py"
+  ]
+}

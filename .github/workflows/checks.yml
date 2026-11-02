@@ -1,0 +1,33 @@
+name: Source and Mac candidate checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -B -m unittest discover -s tests
+      - run: python tools/check_publication.py --require-clean
+      - run: git archive --format=tar --output="$RUNNER_TEMP/CartShelf-source.tar" HEAD
+      - run: python tools/check_publication.py --require-clean --source-archive "$RUNNER_TEMP/CartShelf-source.tar"
+  mac-candidate:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python app/build.py
+      - run: python tools/check_publication.py --require-clean --app dist/CartShelf.app

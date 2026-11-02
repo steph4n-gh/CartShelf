@@ -1,0 +1,34 @@
+# Authored parser fixture. These revision notes are synthetic test data.
+metadata:
+  manifest_version: 1
+  timestamp: "2026-01-01T00:00:00Z"
+games:
+  self_simulated:
+    versions:
+      "1.0": {date: "2024-01-01", changes: "Example initial revision."}
+      "1.1": {date: "2024-02-01", changes: "Example revision requires a fresh save."}
+      "1.2": {date: "2024-03-01", changes: "Example revision requires a fresh save."}
+  gravitorque:
+    versions:
+      "1.1": {date: "2024-01-01", changes: "Example control revision."}
+  tetris:
+    versions:
+      "1.1": {date: "2024-01-01", changes: "Example timing revision."}
+  croc:
+    versions:
+      "1.2": {date: "2024-01-01", changes: "Example collision revision."}
+  cursed_cartridge:
+    versions:
+      "1.1": {date: "2024-01-01", changes: "Example menu revision."}
+  in_the_dark:
+    versions:
+      "1.4": {date: "2024-01-01", changes: "Example puzzle revision."}
+  zas:
+    versions:
+      "1.0": {date: "2024-01-01", changes: "Example initial revision."}
+  rayman2:
+    versions:
+      "1.0": {date: "2024-01-01", changes: "Example initial revision."}
+  project_s11:
+    versions:
+      "1.0": {date: "2024-01-01", changes: "Example initial revision."}
