@@ -30,7 +30,7 @@ Check **SYSTEM FILES** before preparing a full-card replacement. A game-only fol
 
 The exported image uses a compact partition. CartShelf's direct installation prepares the card's full capacity and restores matching saves. Another image writer can reproduce the compact partition size as-is.
 
-To reuse an earlier export, open **PREPARED IMAGES** and choose **CHECK & USE IMAGE**. This checks the current file before passing it to Card.
+To reuse an earlier export, open **PREPARED IMAGES** and choose **CHECK & USE**. This checks the current file before passing it to Card. A matching image also has a **CHECK & USE IMAGE >** shortcut in the pack builder.
 
 ## Share a recipe
 

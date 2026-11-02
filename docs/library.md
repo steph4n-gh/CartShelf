@@ -16,7 +16,7 @@ This actual app capture uses fictional games. Clock Garden has two generated rev
 
 **CHOOSE A THEME** selects a saved game set. Use **ARCHIVE SET** to retire a saved set without removing its ROMs. Cartridge menu appearance is covered in [the themes guide](themes.md).
 
-Use **IMPORT** to add files or folders. Use **RESCAN** after changing files outside CartShelf. If the library drive disconnects, reconnect that folder when prompted.
+Use **IMPORT** to add game files or supported archives, such as ZIP files. To import games from a folder, open the folder in the picker and select the files inside it. Use **RESCAN** after changing files outside CartShelf. If the library drive disconnects, reconnect that folder when prompted.
 
 ## Refresh details and artwork
 

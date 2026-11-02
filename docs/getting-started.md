@@ -58,10 +58,11 @@ Fresh-pack replacement in this beta requires one readable FAT source volume. For
 1. Insert the spare SD card.
 2. Open **CARD** and choose the verified image and the intended removable card.
 3. Check the live device identity and capacity.
-4. Review game changes, save sources, and the backup method and destination.
-5. Choose **BACK UP & REPLACE** after those details match your intention.
-6. Keep the card connected through backup, installation, readback checks, and safe ejection.
-7. Test the card in the console using [the beta checklist](beta-testing.md).
+4. Choose **REVIEW CARD REPLACEMENT >**.
+5. Review game changes, save sources, and the backup method and destination.
+6. Choose **BACK UP & REPLACE** after those details match your intention.
+7. Keep the card connected through backup, installation, readback checks, and safe ejection.
+8. Test the card in the console using [the beta checklist](beta-testing.md).
 
 The [illustrated card review](backup-and-recovery.md#replace-a-pack) shows how game changes, save sources, system files, and the backup destination appear together.
 
