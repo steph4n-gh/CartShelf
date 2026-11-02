@@ -169,7 +169,13 @@ def sync_metadata_files(metadata_repo: Path, game_codes: set[str] | None) -> Non
     if len({entry["path"] for entry in entries}) != len(entries):
         raise ValueError("The N64 metadata file list contains duplicate paths.")
     codes = game_codes if game_codes is not None else {"".join(entry["path"].split("/")[1:5]) for entry in entries}
-    targets = [metadata_repo.joinpath("metadata", *code, name) for code in sorted(codes) for name in SUPPORTED_METADATA_FILES]
+    target_codes = set(codes)
+    if game_codes is None:
+        for path in (metadata_repo / "metadata").glob("*/*/*/*/*"):
+            parts = path.relative_to(metadata_repo / "metadata").parts
+            if path.name in SUPPORTED_METADATA_FILES and all(re.fullmatch(r"[A-Za-z0-9]", part) for part in parts[:4]):
+                target_codes.add("".join(parts[:4]))
+    targets = [metadata_repo.joinpath("metadata", *code, name) for code in sorted(target_codes) for name in SUPPORTED_METADATA_FILES]
     if any(not path.resolve().is_relative_to(metadata_repo.resolve()) or path.is_symlink()
            or (path.exists() and not path.is_file()) for path in targets):
         raise ValueError("An N64 metadata cache path leaves the selected library.")

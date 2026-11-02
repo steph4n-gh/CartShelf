@@ -134,6 +134,42 @@ class MetadataDownload(unittest.TestCase):
         self.assertEqual((self.cache / 'metadata/N/B/B/E/metadata.ini').read_bytes(), self.payloads['metadata/N/B/B/E/metadata.ini'])
         self.assertEqual(json.loads((self.cache / metadata.METADATA_SOURCE_FILE).read_text())['scope'], 'all supported files')
 
+    def test_whole_library_refresh_removes_retired_code_only_after_downloads_verify(self):
+        self.refresh(None)
+        retired = self.cache / 'metadata/N/A/A/E'
+        notes = retired / 'local-notes.txt'
+        notes.write_bytes(b'keep local notes')
+        source = self.cache / metadata.METADATA_SOURCE_FILE
+        old_receipt = source.read_bytes()
+        path = 'metadata/N/B/B/E/metadata.ini'
+        self.payloads[path] += b'author=Updated\n'
+        payload = self.payloads[path]
+        self.tree['tree'] = [{'path': path, 'type': 'blob', 'mode': '100644', 'size': len(payload),
+                              'sha': hashlib.sha1(f'blob {len(payload)}\0'.encode() + payload).hexdigest()}]
+        original = self.response
+
+        def broken_response(url, limit):
+            return b'bad download' if url.endswith('/metadata.ini') else original(url, limit)
+
+        with mock.patch.object(metadata, '_metadata_response', side_effect=broken_response), self.assertRaises(ValueError):
+            metadata.sync_metadata_files(self.cache, None)
+        self.assertTrue((retired / 'metadata.ini').is_file())
+        self.assertTrue((retired / 'boxart_front.png').is_file())
+        self.assertEqual(source.read_bytes(), old_receipt)
+
+        with mock.patch.object(metadata, '_metadata_response', side_effect=self.response), \
+             mock.patch.object(metadata, 'run', side_effect=AssertionError('Git must not be invoked')), \
+             mock.patch.object(metadata, 'download'), \
+             mock.patch.object(metadata.urllib.request, 'urlopen', return_value=io.BytesIO(b'ed64-pro-fw-v26.1014.efu')):
+            metadata.sync_inputs(self.cache, self.cache.parent / 'reference.dat', self.cache.parent / 'firmware')
+        self.assertFalse((retired / 'metadata.ini').exists())
+        self.assertFalse((retired / 'boxart_front.png').exists())
+        self.assertEqual(notes.read_bytes(), b'keep local notes')
+        self.assertEqual((self.cache / path).read_bytes(), payload)
+        receipt = json.loads(source.read_text())
+        self.assertEqual(receipt['game_codes'], ['NBBE'])
+        self.assertEqual([item['path'] for item in receipt['files']], [path])
+
 
 if __name__ == '__main__':
     unittest.main()
