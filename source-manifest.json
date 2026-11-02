@@ -307,6 +307,9 @@
     "tests/test_media.py": {
       "kind": "text"
     },
+    "tests/test_n64_metadata_download.py": {
+      "kind": "text"
+    },
     "tests/test_portable_library.py": {
       "kind": "text"
     },

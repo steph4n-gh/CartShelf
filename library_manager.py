@@ -867,11 +867,15 @@ class Library:
             raise ValueError('Choose one of the two device libraries.')
         progress('metadata', 'Refreshing ' + PROFILES[profile]['console'] + ' metadata')
         if profile == 'm64':
+            stored = self._read_json(self.catalog, {})
+            releases = (stored.get('snapshot') or self.scan())['releases']
+            codes = {r['game_code'] for r in releases if r['profile'] == 'm64' and re.fullmatch(r'[A-Za-z0-9]{4}', r['game_code'])}
             with contextlib.redirect_stdout(sys.stderr):
                 N64.sync_inputs(
                     self._managed(self.root / 'cache/n64-flashcart-menu-metadata'),
                     self._managed(self.root / 'reference/Nintendo - Nintendo 64.dat'),
                     self._managed(self.root / 'cache/firmware'),
+                    game_codes=codes,
                 )
         else:
             import handheld_metadata

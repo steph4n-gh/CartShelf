@@ -22,7 +22,9 @@ Use **IMPORT** to add game files or supported archives, such as ZIP files. To im
 
 Choose **REFRESH METADATA** for the selected device. Open **GAME DETAILS & SOURCES** to inspect available descriptions, credits, genre, year, and source links.
 
-Refresh uses the network. The first M64 refresh also downloads the community metadata checkout and reference data. Allow that operation to finish before building a pack.
+M64 refresh downloads community details and artwork only for cartridge game codes present in your library. Downloads are pinned to one upstream commit and checked against its file hashes; the source receipt stays in the library cache. The app does not need Git or Apple command-line tools. The checksum reference and official firmware check still run, even for an empty library. Unknown game codes can have no community details or artwork.
+
+Refresh uses the network, and public sources can rate-limit requests. Unchanged M64 artwork is reused after checking its source hash. Allow the operation to finish before building a pack.
 
 Artwork can identify a title without proving which ROM revision you own. Some homebrew and modified games have no reference match or sourced artwork. Use **MISSING ART** to find those entries. Metadata and downloaded images stay in your library cache.
 

@@ -370,6 +370,14 @@ class LibraryBehavior(unittest.TestCase):
         self.assertFalse((folder / 'ed64/metadata/N/B/B/E').exists())
         self.assertEqual((folder / 'N64 Games/Alpha.z64').read_bytes(), n64_rom(code='NAAE'))
 
+    def test_native_m64_refresh_requests_only_codes_in_library(self):
+        self.write(self.n64 / 'Alpha.z64', n64_rom(code='NAAE'))
+        self.write(self.n64 / 'Alpha copy.z64', n64_rom(code='NAAE'))
+        self.write(self.gb / 'Puzzle.gb', gb_rom())
+        with mock.patch('library_manager.N64.sync_inputs') as sync:
+            self.library.refresh_metadata('m64')
+        self.assertEqual(sync.call_args.kwargs, {'game_codes': {'NAAE'}})
+
     def test_handheld_os_matches_preserved_manifest_and_excludes_saved_state(self):
         self.write(self.gb / 'Puzzle.gb', gb_rom())
         legacy = self.root / 'legacy/everdrive-gb-x7-20261012'

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 import hashlib
 import json
@@ -38,6 +39,9 @@ CARTSHELF_THEME_FILES = {
 }
 
 METADATA_REPO_URL = "https://github.com/n64-tools/n64-flashcart-menu-metadata.git"
+METADATA_API_URL = "https://api.github.com/repos/n64-tools/n64-flashcart-menu-metadata"
+METADATA_RAW_URL = "https://raw.githubusercontent.com/n64-tools/n64-flashcart-menu-metadata/"
+METADATA_SOURCE_FILE = ".cartshelf-source.json"
 DAT_URL = (
     "https://raw.githubusercontent.com/libretro/libretro-database/master/"
     "metadat/no-intro/Nintendo%20-%20Nintendo%2064.dat"
@@ -123,10 +127,98 @@ def download(url: str, destination: Path) -> None:
     temporary_path.replace(destination)
 
 
-def sync_inputs(metadata_repo: Path, dat_path: Path, firmware_cache: Path) -> Path:
+def _metadata_response(url: str, limit: int) -> bytes:
+    request = urllib.request.Request(url, headers={"User-Agent": "CartShelf"})
+    with urllib.request.urlopen(request, timeout=60) as response:
+        payload = response.read(limit + 1)
+    if len(payload) > limit:
+        raise ValueError("The N64 metadata response exceeds its size limit.")
+    return payload
+
+
+def sync_metadata_files(metadata_repo: Path, game_codes: set[str] | None) -> None:
+    """Fetch supported files at one upstream commit without requiring host Git."""
+    if game_codes is not None and any(not re.fullmatch(r"[A-Za-z0-9]{4}", code) for code in game_codes):
+        raise ValueError("Invalid N64 metadata game code.")
+    commit = json.loads(_metadata_response(METADATA_API_URL + "/commits/main", 1024 * 1024))
+    revision = commit["sha"]
+    tree_sha = commit["commit"]["tree"]["sha"]
+    if not all(isinstance(value, str) and re.fullmatch(r"[0-9a-f]{40}", value) for value in (revision, tree_sha)):
+        raise ValueError("The N64 metadata source did not provide a valid commit.")
+    date, message = commit["commit"]["committer"]["date"], commit["commit"]["message"]
+    if not isinstance(date, str) or not isinstance(message, str):
+        raise ValueError("The N64 metadata source did not provide valid commit details.")
+    tree = json.loads(_metadata_response(METADATA_API_URL + "/git/trees/" + tree_sha + "?recursive=1", 16 * 1024 * 1024))
+    if tree.get("truncated") is not False or not isinstance(tree.get("tree"), list):
+        raise ValueError("The N64 metadata file list is incomplete. Existing files were kept.")
+    entries = []
+    for entry in tree["tree"]:
+        parts = str(entry.get("path", "")).split("/")
+        if len(parts) != 6 or parts[0] != "metadata" or parts[-1] not in SUPPORTED_METADATA_FILES:
+            continue
+        code = "".join(parts[1:5])
+        if any(len(part) != 1 for part in parts[1:5]) or not re.fullmatch(r"[A-Za-z0-9]{4}", code):
+            continue
+        if game_codes is not None and code not in game_codes:
+            continue
+        if (entry.get("type") != "blob" or entry.get("mode") != "100644"
+                or not isinstance(entry.get("sha"), str) or not re.fullmatch(r"[0-9a-f]{40}", entry["sha"])
+                or type(entry.get("size")) is not int or not 0 <= entry["size"] <= 16 * 1024 * 1024):
+            raise ValueError("The N64 metadata file list contains an unsupported file.")
+        entries.append(entry)
+    if len({entry["path"] for entry in entries}) != len(entries):
+        raise ValueError("The N64 metadata file list contains duplicate paths.")
+    codes = game_codes if game_codes is not None else {"".join(entry["path"].split("/")[1:5]) for entry in entries}
+    targets = [metadata_repo.joinpath("metadata", *code, name) for code in sorted(codes) for name in SUPPORTED_METADATA_FILES]
+    if any(not path.resolve().is_relative_to(metadata_repo.resolve()) or path.is_symlink()
+           or (path.exists() and not path.is_file()) for path in targets):
+        raise ValueError("An N64 metadata cache path leaves the selected library.")
+    metadata_repo.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="n64-metadata-", dir=metadata_repo.parent) as temporary:
+        stage = Path(temporary)
+
+        def fetch(entry: dict) -> dict:
+            cached = metadata_repo / entry["path"]
+            payload = cached.read_bytes() if cached.is_file() and cached.stat().st_size == entry["size"] else None
+            if payload is None or hashlib.sha1(f"blob {len(payload)}\0".encode() + payload).hexdigest() != entry["sha"]:
+                payload = _metadata_response(METADATA_RAW_URL + revision + "/" + entry["path"], entry["size"])
+            blob = hashlib.sha1(f"blob {len(payload)}\0".encode() + payload).hexdigest()
+            if len(payload) != entry["size"] or blob != entry["sha"]:
+                raise ValueError("An N64 metadata download failed its source checksum. Existing files were kept.")
+            target = stage / entry["path"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(payload)
+            return {"path": entry["path"], "bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest(), "git_blob": blob}
+
+        log(f"Downloading N64 details and artwork for {len(game_codes) if game_codes is not None else 'all'} game codes ({len(entries)} files)...")
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            files = list(executor.map(fetch, entries))
+        # Complete every download and checksum before touching the previous cache.
+        present = {entry["path"] for entry in entries}
+        for target in targets:
+            relative = target.relative_to(metadata_repo).as_posix()
+            if relative in present:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                (stage / relative).replace(target)
+            else:
+                target.unlink(missing_ok=True)
+        receipt = {
+            "commit": revision, "date": date, "subject": (message.splitlines() or [""])[0],
+            "source_url": METADATA_REPO_URL, "scope": "selected game codes" if game_codes is not None else "all supported files",
+            "game_codes": sorted(codes), "files": sorted(files, key=lambda item: item["path"]),
+        }
+        source = stage / METADATA_SOURCE_FILE
+        source.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+        metadata_repo.mkdir(parents=True, exist_ok=True)
+        source.replace(metadata_repo / METADATA_SOURCE_FILE)
+
+
+def sync_inputs(metadata_repo: Path, dat_path: Path, firmware_cache: Path, game_codes: set[str] | None = None) -> Path:
     """Update the three time-sensitive upstream inputs and return latest firmware."""
     metadata_repo.parent.mkdir(parents=True, exist_ok=True)
-    if (metadata_repo / ".git").is_dir():
+    if game_codes is not None or (metadata_repo / METADATA_SOURCE_FILE).is_file():
+        sync_metadata_files(metadata_repo, game_codes)
+    elif (metadata_repo / ".git").is_dir():
         log("Updating the current metadata source...")
         run(["git", "pull", "--ff-only"], cwd=metadata_repo)
     elif metadata_repo.exists():
@@ -518,6 +610,10 @@ def select_verified_fills(
 
 
 def metadata_source_info(metadata_repo: Path) -> dict[str, str]:
+    receipt = metadata_repo / METADATA_SOURCE_FILE
+    if receipt.is_file():
+        values = json.loads(receipt.read_text(encoding="utf-8"))
+        return {key: values[key] for key in ("commit", "date", "subject", "scope")}
     try:
         values = run(
             [
@@ -745,6 +841,7 @@ def write_report(
             f"- No-Intro/libretro DAT SHA-256: `{dat_sha256}`",
             f"- Metadata repository commit: `{metadata_info['commit']}`",
             f"- Metadata repository commit date: `{metadata_info['date']}`",
+            f"- Metadata source scope: {metadata_info.get('scope', 'Git checkout')}",
             f"- Firmware staged: `{firmware_path.name if firmware_path else 'not available'}`",
             f"- Supplemental comparison folder: `{supplemental_dir if supplemental_dir else 'not used'}`",
             f"- Supplemental files inspected: {len(supplemental_rows)}",
