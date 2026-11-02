@@ -1312,7 +1312,8 @@ private enum Backend {
         clearSelection()
         load(["collection-delete", "--id", id], label: "ARCHIVING SET DEFINITION")
     }
-    func action(_ label: String, readOnly: Bool = false, allowsQuit: Bool = false, work: @escaping () async throws -> Void) {
+    func action(_ label: String, readOnly: Bool = false, allowsQuit: Bool = false, showsErrorAlert: Bool = true,
+                work: @escaping () async throws -> Void) {
         guard !busy else { return }
         let id = UUID()
         operationId = id
@@ -1325,7 +1326,7 @@ private enum Backend {
             } catch {
                 guard operationId == id else { return }
                 operation = .failed(error.localizedDescription)
-                showError = true
+                showError = showsErrorAlert
             }
         }
     }
@@ -1436,7 +1437,7 @@ private enum Backend {
         picker.message = status.profile == "m64" ? "Choose the official ED64 PRO EFU file or ZIP download." : "Choose the official GB X7 OS ZIP or GBCOS.BIN file."
         picker.prompt = "VERIFY & IMPORT"; picker.canChooseDirectories = false; picker.allowsMultipleSelection = false
         guard picker.runModal() == .OK, let input = picker.url else { return }
-        action("VERIFYING OFFICIAL SYSTEM FILES") {
+        action("VERIFYING OFFICIAL SYSTEM FILES", showsErrorAlert: false) {
             self.systemFiles = try Backend.decode(SystemFilesStatus.self, data: await self.run(["system-files-import", "--profile", status.profile, "--path", input.path], experience: true))
             self.operation = .idle(self.systemFiles?.message ?? "SYSTEM FILES VERIFIED")
         }
@@ -2802,6 +2803,14 @@ struct CartShelfView: View {
             Text("CARTRIDGE SYSTEM FILES").font(pixel(19, bold: true)).foregroundStyle(yellow)
             if let files = model.systemFiles {
                 Text(files.profile == "m64" ? "EVERDRIVE-64 PRO" : "EVERDRIVE-GB X7").font(pixel(12)).foregroundStyle(.white)
+                if case .failed(let message) = model.operation {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("IMPORT STOPPED").font(pixel(10)).foregroundStyle(scarlet)
+                        Text(message).font(.system(size: 12, design: .monospaced)).foregroundStyle(.white)
+                            .fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
+                    }.padding(12).frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color(white: 0.08)).modifier(Bevel(highlighted: true, accent: scarlet))
+                }
                 Text(files.status == "ready" ? "VERIFIED FILES READY" : files.status == "changed" ? "CACHED FILE NEEDS REVIEW" : "OFFICIAL FILE NEEDED")
                     .font(pixel(12)).foregroundStyle(files.status == "ready" ? .green : .orange)
                 Text(files.message).font(.system(size: 12, design: .monospaced)).foregroundStyle(quiet).fixedSize(horizontal: false, vertical: true)
