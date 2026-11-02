@@ -1,0 +1,67 @@
+name: Bug report
+description: Report a reproducible CartShelf problem with sanitized details.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a suspected security flaw, use [private vulnerability reporting](https://github.com/steph4n-gh/CartShelf/security/advisories/new).
+        Keep ROMs, saves, firmware, card images, credentials, and personal paths out of this report.
+  - type: input
+    id: version
+    attributes:
+      label: CartShelf version
+      description: Copy the version from the app header or release name.
+      placeholder: 0.7.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: mac
+    attributes:
+      label: macOS version and Mac chip
+      placeholder: macOS version, Apple M-series chip
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Affected device pair
+      options:
+        - M64 with EverDrive-64 PRO
+        - Chromatic with EverDrive-GB X7
+        - Library or app behavior without a card
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Start with the selected tab and action. Use fictional filenames when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result
+      description: Include the exact error and the stage where the operation stopped. Redact personal paths.
+    validations:
+      required: true
+  - type: textarea
+    id: media
+    attributes:
+      label: Card and reader details
+      description: For card problems, include capacity, filesystem, reader model, cartridge revision, and system-file version. Omit serial numbers.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public-data check
+      options:
+        - label: This report contains no ROMs, saves, firmware, card images, credentials, or unredacted personal data.
+          required: true

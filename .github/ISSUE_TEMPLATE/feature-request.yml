@@ -1,0 +1,38 @@
+name: Feature request
+description: Describe a collection or card workflow that CartShelf could improve.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: Describe the task and what currently gets in the way.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Describe the result you want to see in the app.
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Affected workflow
+      options:
+        - M64 with EverDrive-64 PRO
+        - Chromatic with EverDrive-GB X7
+        - Both device pairs
+        - Collection browsing or app behavior
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Current workaround
+      description: Describe how you handle the task today, if applicable.
+  - type: markdown
+    attributes:
+      value: Keep private game files, saves, personal paths, and credentials out of this request.

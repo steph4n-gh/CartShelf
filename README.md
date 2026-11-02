@@ -1,39 +1,57 @@
+![CartShelf pixel branding](docs/images/cartshelf-banner.svg)
+
 # CartShelf
 
-CartShelf is a native Mac app for building game collections and preparing flashcart SD cards. Its pixel interface keeps the library browser, pack builder, and card station in one window.
+A native Mac app for your ModRetro game collection. Browse exact ROM builds, make themed packs, and prepare EverDrive SD cards with verified backups and save history.
 
-This beta targets two device pairs:
+**[Download the Mac beta](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.1)** · [Get started](docs/getting-started.md) · [Report a bug](https://github.com/steph4n-gh/CartShelf/issues/new/choose)
+
+[![Source and Mac candidate checks](https://github.com/steph4n-gh/CartShelf/actions/workflows/checks.yml/badge.svg)](https://github.com/steph4n-gh/CartShelf/actions/workflows/checks.yml)
+
+**macOS 14 or later. Apple Silicon.** The packaged beta includes its Python runtime. You do not need Homebrew or a separate Python installation.
+
+![CartShelf pack builder with two fictional M64 game builds and a verified image](docs/images/pack-builder.jpg)
+
+The screenshots use generated, nonplayable ROM and save fixtures. They contain no personal game collection or save data.
+
+## Two device pairs
 
 | Console | Cartridge |
 | --- | --- |
 | ModRetro M64 | EverDrive-64 PRO |
 | ModRetro Chromatic | EverDrive-GB X7 |
 
-Release version, minimum macOS version, and build number come from [release.json](release.json). This source tree contains application code, reviewed theme assets, and synthetic tests. Bring your own ROMs and cartridge system files. Store your library outside the source checkout and the app bundle.
+Bring your own game files and obtain cartridge system files from the manufacturer. The repository and app contain no ROM collection, save files, or vendor firmware.
 
-## Use the app
+## What you can do
 
-The packaged beta targets Apple Silicon Macs. Copy CartShelf.app out of the download archive into Applications or another normal mounted drive before opening it.
+- Browse game versions, refresh metadata, verify ROMs, and review duplicate files before recoverable cleanup.
+- Build themed folders, ZIPs, or compact FAT32 images. Direct card installation uses the card's full capacity.
+- Review games added, retained, and removed before replacing a card. Check each save's source and the backup destination in the same review.
+- Keep matching progress through pack changes. Verify or export an earlier save bundle, then choose it for one reviewed write. SRAM and clock files stay together.
+- Share pack recipes containing titles, versions, and exact content hashes. ROMs, saves, and local paths stay out of recipes.
 
-1. Open CartShelf and choose **CONNECT LIBRARY** to open an existing library, or create a new library folder. Choose a folder outside Git repositories, source archives, and the application bundle.
-2. Import your game files and select exact builds in **LIBRARY**.
-3. Open **PACKS** to build a folder, ZIP, or compact FAT32 image.
-4. In **CARD**, choose a pack and the inserted card. Review the game changes, save sources, backup destination, and device identity.
-5. Start the replacement and keep the card connected until CartShelf reports safe ejection.
+[See the save timeline](docs/images/save-timeline.jpg). [See the card review layout](docs/images/review-card.jpg). The card review image is a disabled display fixture using the production view. It demonstrates layout, not a physical write.
 
-CartShelf verifies a backup before formatting. Direct card installation uses the card's full capacity. Matching saves come from the current card or verified save history. An explicitly selected earlier save applies only to the reviewed write. Unknown or conflicting save associations remain in the backup with an explanation.
+## Start with your own library
 
-Use **SAVE HISTORY** to inspect, verify, and export a save bundle. **USE IN NEXT WRITE** chooses a verified earlier bundle. Clock and SRAM files stay together. The Card tab can clear earlier-save choices before review.
+1. Download the beta ZIP and move `CartShelf.app` to Applications or another normal mounted drive.
+2. Open CartShelf and create or connect a writable library folder outside the app and source checkout.
+3. Import your games and use **SYSTEM FILES** to verify the manufacturer's supported files.
+4. Select exact builds in **LIBRARY**, then open **PACKS** to build an image.
+5. Follow [the first card-write guide](docs/getting-started.md#write-a-spare-card) with a spare card and a verified backup.
 
-Use **EXPORT RECIPE** to share a collection definition. **OPEN RECIPE** checks exact identities against your library before importing a set. Recipes contain titles, versions, hashes, and notes. They contain no game files, save bytes, or local file paths.
+Your library folder holds games, downloaded metadata, system files, packs, backups, and browsing preferences. It can live on an external drive. CartShelf reconnects to that folder when you reopen the app.
 
-The Card tab supports friendly card names and prior verified operation details. Names are advisory. The live device identity and capacity still control replacement. An EFU file on a card is an available firmware updater. It does not establish the firmware currently installed on the cartridge.
+## Beta status
 
-See [backup and recovery](docs/backup-and-recovery.md), [system files](docs/system-files.md), and the [beta test checklist](docs/beta-testing.md).
+Version `0.7.0-beta.1` is Developer ID signed and notarized. The candidate passed 389 automated tests and ten virtual card operations. See the [release notes](https://github.com/steph4n-gh/CartShelf/releases/tag/v0.7.0-beta.1) for qualification details.
+
+Clean external-Mac testing and physical SD-card tests of this rebuilt beta remain open. Those checks include card recovery, clock and save persistence, native card-operation contention, and the public N64 font atlas. Earlier private-build hardware results do not qualify this beta. Use [the beta checklist](docs/beta-testing.md) to record a result.
 
 ## Build from source
 
-Build on macOS with Python 3.13 or later and the Xcode command-line tools. The distributed app uses its own pinned Python runtime. End users do not need Homebrew or Python installed separately.
+Build on macOS with Python 3.13 or later and the Xcode command-line tools.
 
 ```sh
 python3 -m venv .venv
@@ -43,25 +61,17 @@ python3 -m venv .venv
 .venv/bin/python app/build.py
 ```
 
-The output is `dist/CartShelf.app`. The default local build has an ad-hoc signature. A release download needs its own signing and notarization checks. [Build and release instructions](docs/build-and-release.md) explain the available commands and the distinction.
+The output is `dist/CartShelf.app`. A default local build has an ad-hoc signature. [Build and release instructions](docs/build-and-release.md) cover distribution signing, notarization, and source checks.
 
-To exercise the CLI, first create a separate empty folder outside the checkout. Pass its absolute path explicitly.
+## Read more or contribute
 
-```sh
-.venv/bin/python library_manager.py --root /path/to/your-library init
-.venv/bin/python library_manager.py --root /path/to/your-library scan
-```
+- [Back up and recover a card](docs/backup-and-recovery.md).
+- [Prepare cartridge system files](docs/system-files.md).
+- [Understand the code and data boundaries](docs/architecture.md).
+- [Read the changelog](CHANGELOG.md).
+- [Contribute a change](CONTRIBUTING.md) and follow the [community guidelines](CODE_OF_CONDUCT.md).
+- [Report a security problem privately](SECURITY.md).
 
-Tests create synthetic ROM headers, save bytes, and metadata in temporary folders. These fixtures check program behavior and are not playable games. Tests do not require a personal game collection or download vendor firmware.
+CartShelf source is GPL-3.0-only. Fonts retain their OFL license. See [LICENSE](LICENSE), [third-party notices](THIRD_PARTY_NOTICES.md), and [image provenance](docs/images/README.md).
 
-## Beta qualification
-
-Software checks, virtual-card checks, and physical console acceptance are separate results. An earlier private build passed on-device game, existing-save, and new-save power-cycle checks for both target pairs. That history does not qualify a rebuilt beta or the replacement public N64 font atlas. Record each beta's physical tests separately using [the beta checklist](docs/beta-testing.md).
-
-Public source checks inspect the working tree, staged files, all reachable Git history, and source archives. The packaged app has a separate resource and runtime check. Run these before sharing a repository or release archive.
-
-## Contribute
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding a device or changing save or card behavior. Report suspected security problems using [SECURITY.md](SECURITY.md). Do not attach ROMs, private saves, or unredacted library reports to issues.
-
-CartShelf source is GPL-3.0-only. Fonts retain their OFL license. [Third-party notices](THIRD_PARTY_NOTICES.md) describe the theme tooling and packaged runtime dependencies. Cartridge names identify compatibility targets. CartShelf is an independent project.
+CartShelf is an independent project. Console and cartridge names identify compatibility targets.

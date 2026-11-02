@@ -1,10 +1,28 @@
 {
   "schema": 1,
   "files": {
+    ".github/ISSUE_TEMPLATE/bug-report.yml": {
+      "kind": "text"
+    },
+    ".github/ISSUE_TEMPLATE/config.yml": {
+      "kind": "text"
+    },
+    ".github/ISSUE_TEMPLATE/feature-request.yml": {
+      "kind": "text"
+    },
+    ".github/pull_request_template.md": {
+      "kind": "text"
+    },
     ".github/workflows/checks.yml": {
       "kind": "text"
     },
     ".gitignore": {
+      "kind": "text"
+    },
+    "CHANGELOG.md": {
+      "kind": "text"
+    },
+    "CODE_OF_CONDUCT.md": {
       "kind": "text"
     },
     "CONTRIBUTING.md": {
@@ -134,6 +152,9 @@
     "cart_updates.py": {
       "kind": "text"
     },
+    "docs/architecture.md": {
+      "kind": "text"
+    },
     "docs/backup-and-recovery.md": {
       "kind": "text"
     },
@@ -142,6 +163,37 @@
     },
     "docs/build-and-release.md": {
       "kind": "text"
+    },
+    "docs/getting-started.md": {
+      "kind": "text"
+    },
+    "docs/images/README.md": {
+      "kind": "text"
+    },
+    "docs/images/cartshelf-banner.svg": {
+      "kind": "asset",
+      "sha256": "74f50705823b2f9c3af1ed8f399d35ca95bfdbcc32fed006d870a3d688b29a66",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/cartshelf-social.png": {
+      "kind": "asset",
+      "sha256": "80cfed59d5dbf927b899fb48cc6a9ed351d2922894da78a62cc7ca636b6df4d0",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/pack-builder.jpg": {
+      "kind": "asset",
+      "sha256": "d20b143cdd1a793cd623db9783b913581aa16d3afc49339d3847e69a115683c4",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/review-card.jpg": {
+      "kind": "asset",
+      "sha256": "67b061000c1a6c8831d07267b9f63cfa71249958c83148ce08c7952091f71863",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/save-timeline.jpg": {
+      "kind": "asset",
+      "sha256": "aafb3d4c82302be01794f6cf5af7d27a1ee727b3702c00375f91015dc2ca39ec",
+      "notice": "docs/images/README.md"
     },
     "docs/system-files.md": {
       "kind": "text"
@@ -424,31 +476,45 @@
     }
   },
   "required_files": [
+    ".github/ISSUE_TEMPLATE/bug-report.yml",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/feature-request.yml",
+    ".github/pull_request_template.md",
+    ".gitignore",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
     "LICENSE",
     "README.md",
-    "CONTRIBUTING.md",
     "SECURITY.md",
     "THIRD_PARTY_NOTICES.md",
-    ".gitignore",
-    "source-manifest.json",
-    "release.json",
-    "requirements-dev.txt",
-    "library_manager.py",
-    "library_experience.py",
-    "recipes.py",
-    "media.py",
-    "card_saves.py",
-    "cart_updates.py",
-    "handheld_metadata.py",
-    "prepare_everdrive64.py",
-    "prepared_images.py",
-    "rom_verifier.py",
     "app/CartShelf.swift",
+    "app/Resources/OFL.txt",
     "app/build.py",
     "app/runtime-lock.json",
-    "tools/check_publication.py",
-    "app/Resources/OFL.txt",
+    "card_saves.py",
+    "cart_updates.py",
+    "docs/architecture.md",
+    "docs/getting-started.md",
+    "docs/images/README.md",
+    "docs/images/cartshelf-banner.svg",
+    "docs/images/cartshelf-social.png",
+    "docs/images/pack-builder.jpg",
+    "docs/images/review-card.jpg",
+    "docs/images/save-timeline.jpg",
+    "handheld_metadata.py",
+    "library_experience.py",
+    "library_manager.py",
+    "media.py",
+    "prepare_everdrive64.py",
+    "prepared_images.py",
+    "recipes.py",
+    "release.json",
+    "requirements-dev.txt",
+    "rom_verifier.py",
+    "source-manifest.json",
     "themes/CartShelf-64/dist/CartShelf-64.bgr",
-    "themes/CartShelf-GB/apply_theme.py"
+    "themes/CartShelf-GB/apply_theme.py",
+    "tools/check_publication.py"
   ]
 }

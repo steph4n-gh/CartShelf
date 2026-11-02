@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem privately
+    url: https://github.com/steph4n-gh/CartShelf/security/advisories/new
+    about: Use private vulnerability reporting for suspected security flaws.
+  - name: Beta test checklist
+    url: https://github.com/steph4n-gh/CartShelf/blob/main/docs/beta-testing.md
+    about: Check the steps for app, card, console, save, and clock testing.
