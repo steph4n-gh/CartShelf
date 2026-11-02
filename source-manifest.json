@@ -152,6 +152,9 @@
     "cart_updates.py": {
       "kind": "text"
     },
+    "docs/README.md": {
+      "kind": "text"
+    },
     "docs/architecture.md": {
       "kind": "text"
     },
@@ -180,9 +183,24 @@
       "sha256": "80cfed59d5dbf927b899fb48cc6a9ed351d2922894da78a62cc7ca636b6df4d0",
       "notice": "docs/images/README.md"
     },
+    "docs/images/gb-palette.svg": {
+      "kind": "asset",
+      "sha256": "47bb468e3f08b1884fceaa9e963636cd73bcd96d8315b07d565f70ad12266687",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/library-browser.jpg": {
+      "kind": "asset",
+      "sha256": "945b9fc2395579fff401285bd418ef49829c4eb9361e2aa62be2bc1c1710515e",
+      "notice": "docs/images/README.md"
+    },
     "docs/images/pack-builder.jpg": {
       "kind": "asset",
       "sha256": "d20b143cdd1a793cd623db9783b913581aa16d3afc49339d3847e69a115683c4",
+      "notice": "docs/images/README.md"
+    },
+    "docs/images/recipe-review.jpg": {
+      "kind": "asset",
+      "sha256": "bb7089a154b296b8bd6324a5ec3e5521764374128f9009e850edd31fdaf106e3",
       "notice": "docs/images/README.md"
     },
     "docs/images/review-card.jpg": {
@@ -195,7 +213,21 @@
       "sha256": "aafb3d4c82302be01794f6cf5af7d27a1ee727b3702c00375f91015dc2ca39ec",
       "notice": "docs/images/README.md"
     },
+    "docs/images/system-files.jpg": {
+      "kind": "asset",
+      "sha256": "556cde0d693322515618102fd34e6a039127e2c95ce39cda5233d4d96ded4703",
+      "notice": "docs/images/README.md"
+    },
+    "docs/library.md": {
+      "kind": "text"
+    },
+    "docs/packs-and-recipes.md": {
+      "kind": "text"
+    },
     "docs/system-files.md": {
+      "kind": "text"
+    },
+    "docs/themes.md": {
       "kind": "text"
     },
     "handheld_metadata.py": {

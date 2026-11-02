@@ -1,5 +1,9 @@
 # Build the CartShelf-64 theme
 
+![CartShelf-64 Scarlet menu simulation with original branding and fictional games](preview/scarlet-menu-labelled.png)
+
+Authored simulation, not a console capture. For automatic pack styling and the matching X7 palette, read [the user-facing themes guide](../../docs/themes.md).
+
 Run these commands from the source repository with Pillow installed.
 
 ```sh

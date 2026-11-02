@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="330" viewBox="0 0 960 330" role="img" aria-labelledby="title desc">
+  <title id="title">CartShelf-GB menu palette</title>
+  <desc id="desc">Four source colors, charcoal, white, scarlet, and yellow. A palette reference, not a console capture.</desc>
+  <rect width="960" height="330" fill="#111111"/>
+  <path d="M24 56V24h32M904 306h32v-32" fill="none" stroke="#FFDE08" stroke-width="6"/>
+  <g font-family="monospace" fill="#FFFFFF">
+    <text x="48" y="65" font-size="25" font-weight="bold">CARTSHELF-GB / EVERDRIVE-GB X7</text>
+    <text x="48" y="96" font-size="15" fill="#bcbcbc">FOUR-COLOR MENU PALETTE</text>
+    <rect x="48" y="124" width="198" height="112" fill="#080808" stroke="#666666"/>
+    <rect x="270" y="124" width="198" height="112" fill="#FFFFFF"/>
+    <rect x="492" y="124" width="198" height="112" fill="#A51018"/>
+    <rect x="714" y="124" width="198" height="112" fill="#FFDE08"/>
+    <g font-size="18" text-anchor="middle">
+      <text x="147" y="267">#080808</text>
+      <text x="369" y="267">#FFFFFF</text>
+      <text x="591" y="267">#A51018</text>
+      <text x="813" y="267">#FFDE08</text>
+    </g>
+    <text x="48" y="302" font-size="14" fill="#bcbcbc">SOURCE PALETTE REFERENCE / NOT A CONSOLE CAPTURE</text>
+  </g>
+</svg>

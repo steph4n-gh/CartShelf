@@ -18,7 +18,11 @@ The release app is Developer ID signed and notarized. The app includes its Pytho
 3. Select **M64** or **CHROMATIC**.
 4. Open **LIBRARY** and choose **IMPORT** to add your game files.
 
-You should see titles and exact builds in the library browser. Use **VERIFY ROMS** to inspect file integrity and reference matches. Read a verification result before treating a file as known-good game content.
+You should see titles and exact builds in the library browser.
+
+![CartShelf library browser with fictional titles and selected builds](images/library-browser.jpg)
+
+Generated-data example. Checkboxes select exact builds. Selecting a title opens its details without adding it to the set. [The library guide](library.md) covers metadata refresh, ROM checks, and recoverable duplicate cleanup.
 
 ## Prepare system files
 
@@ -28,7 +32,9 @@ You should see titles and exact builds in the library browser. Use **VERIFY ROMS
 4. Choose **IMPORT OFFICIAL FILE** and select that file or a supported official ZIP.
 5. Wait for **VERIFIED FILES READY**.
 
-Read [the system-file guide](system-files.md) for supported versions and the difference between an included updater and installed cartridge firmware.
+![System Files showing verified X7 OS 1.06, the required checksum, and the official import controls](images/system-files.jpg)
+
+Actual app sheet from the isolated documentation library. **VERIFIED FILES READY** describes the library's cached file. Read [the system-file guide](system-files.md) for supported versions and the difference between an included updater and installed cartridge firmware.
 
 ## Build a pack
 
@@ -39,7 +45,11 @@ Read [the system-file guide](system-files.md) for supported versions and the dif
 5. Choose **BUILD SD IMAGE**.
 6. Wait for **VERIFIED PACK READY**.
 
-The exported image is compact. Direct card installation prepares a FAT32 filesystem using the card's full capacity.
+![Pack builder with a verified M64 image and Write to Card action](images/pack-builder.jpg)
+
+This fictional M64 example shows **VERIFIED PACK READY**. The exported image is compact. Direct card installation prepares a FAT32 filesystem using the card's full capacity. Both device pairs receive their [matching menu theme](themes.md).
+
+Use [packs and recipes](packs-and-recipes.md) to reuse saved themes, compare output formats, or share your choices without game files.
 
 ## Write a spare card
 
@@ -53,12 +63,16 @@ Fresh-pack replacement in this beta requires one readable FAT source volume. For
 6. Keep the card connected through backup, installation, readback checks, and safe ejection.
 7. Test the card in the console using [the beta checklist](beta-testing.md).
 
+The [illustrated card review](backup-and-recovery.md#replace-a-pack) shows how game changes, save sources, system files, and the backup destination appear together.
+
 CartShelf protects the physical disks holding the startup system, selected library, and running app. A friendly card name is a label. Always check the live identity before replacement.
 
 ## Keep or restore progress
 
-Use [the backup and recovery guide](backup-and-recovery.md) for pack rotation and backup restoration. In **SAVE HISTORY**, verify and export a complete bundle before choosing an earlier save for one reviewed write. Clock and SRAM files stay together.
+Use [the backup and recovery guide](backup-and-recovery.md) for pack rotation and backup restoration. In **SAVE HISTORY**, verify a complete bundle before choosing it for one reviewed write. You can also export the bundle. Clock and SRAM files stay together.
 
 ## Report a problem
 
 Use [the bug-report form](https://github.com/steph4n-gh/CartShelf/issues/new/choose). Include the version, selected device pair, expected result, observed result, and the stage where the operation stopped. Keep personal files and unredacted logs out of the report.
+
+[All guides](README.md) · [Manage your library](library.md) · [Backups and save recovery](backup-and-recovery.md)
